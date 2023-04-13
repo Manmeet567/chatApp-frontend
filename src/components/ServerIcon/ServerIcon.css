@@ -1,0 +1,75 @@
+.serverIcon{
+    margin: 14px auto 0;
+    min-width: 50px;
+    min-height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.serverIcon.text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #313338;
+    font-size: 18px;
+    transition: .2s linear;
+}
+.serverIcon.text:hover{
+    background-color: #5865f2;
+    border-radius: 17px;
+}
+
+.serverIcon.active{
+    background-color: #5865f2;
+    border-radius: 17px;
+}
+
+.serverIconHoverEffect{
+    position: fixed;
+    height: 0px;
+    width: 0px;
+    background-color: #fff;
+    left: 0;
+    border-radius: 10px;
+    transform: translateX(-6px);
+    transition: .1s linear;
+}
+.serverIconHoverEffect.active{
+    height: 40px;
+    width: 10px;
+}
+
+.serverIcon:hover .serverIconHoverEffect{
+    height: 20px;
+    width: 10px;
+}
+
+.serverNameEffect{
+    position:absolute;
+    font-size: 14px;
+    padding: 10px;
+    color: #fff;
+    border-radius: 7px;
+    word-spacing: 5px;
+    background-color: #0f1010;
+    cursor: auto;
+    white-space: nowrap;
+    /* transform: translateX(80px); */
+    left: 90px;
+    display: none;
+    z-index: 999;
+    max-width: 240px;
+    transition: .2s linear;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.4);
+}
+.serverNameEffect::before{
+    content:'';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #0f1010;
+    transform: translate(-15px, 5px) rotate(45deg);
+}
+
+.serverIcon:hover .serverNameEffect{
+    display: block;
+}

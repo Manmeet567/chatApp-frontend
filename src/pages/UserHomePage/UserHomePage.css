@@ -1,0 +1,11 @@
+*{
+    box-sizing: border-box;
+}
+
+.userHomePage{
+    max-height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    font-family: "gg sans", " Noto Sans", " Helvetica Neue", Helvetica, Arial, sans-serif;
+}

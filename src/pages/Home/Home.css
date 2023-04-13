@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+.home{
+    background-color: #404eed; /*#bd1a89 #404eed #01001f*/
+    height: 100vh;
+    font-family: 'Ubuntu', sans-serif;
+}
+.mountains{
+    position: absolute;
+    top: 0;
+    max-width: 100%;
+    height: 100vh;
+    z-index: 1;
+}
+.goo{
+    position: absolute;
+    left: -200px;
+    z-index: 2;
+    bottom:70px;
+}
+.goo2{
+    position: absolute;
+    right: -200px;
+    z-index: 2;
+    bottom: 70px;
+    
+}
+nav{
+    max-width: 1056px;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    position: relative;
+    z-index: 3;
+}
+nav .logo{
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+nav .logo .logo-img{
+    font-size: 35px;
+}
+nav .logo span{
+    margin-left: 10px;
+    font-weight: 700;
+    font-size: 23px;
+}
+nav .menu ul{
+    list-style: none;
+    display: flex;
+    color: #fff;
+}
+nav .menu ul li{
+    margin: 10px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 500;
+}
+nav .menu ul li:hover {
+    text-decoration: underline;
+}
+nav .button{
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: .2s linear;
+}
+nav .button a{
+    color: #171717;
+    font-size: 14px;
+    font-weight: 500;
+    transition: .2s linear;
+}
+nav .button:hover{
+    box-shadow: 1px 2px 20px rgba(0, 0, 0, 0.2);
+}
+nav .button:hover a{
+    color: #404eed;
+}
+main{
+    max-width: 1056px;
+    padding: 80px 200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+main h1{
+    text-align: center;
+    color: #fff;
+    font-size: 40px;
+    transform: scaleX(1.8) scaleY(1.3);
+}
+main .main-text{
+    color: #fff;
+    line-height: 32.5px;
+    margin: 40px 0;
+    font-size: 20px;
+    text-align: center;
+}
+main .main-button{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+main .main-button button{
+    padding: 15px 40px;
+    border: none;
+    font-size:18px;
+    border-radius: 40px;
+    font-weight: 500;
+    background-color: #171717;
+    color: #fff;
+    cursor: pointer;
+    transition: .2s linear;
+}
+
+main .main-button .firstButton{
+    background-color: #fff;
+    color: #171717;
+    transition: .2s linear;
+}
+main .main-button .firstButton:hover{
+    color: #404eed;
+    background-color: #fff;
+}
+
+main .main-button button:hover {
+    background-color: #313338;
+    box-shadow: 1px 2px 20px rgba(0,0,0,0.2);
+}

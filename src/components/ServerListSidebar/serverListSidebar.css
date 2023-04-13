@@ -1,0 +1,150 @@
+.serverList::-webkit-scrollbar{
+    display: none;
+}
+
+.serverList{
+    background-color: #1e1f22;
+    min-height: 100vh;
+    width: 80px;
+    overflow: scroll;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* discord icon color 5865f2 */
+.discord-icon{
+    background-color: #313338;
+    margin: 14px auto;
+    min-width: 50px;
+    min-height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: .2s linear;
+}
+.discord-icon:hover{
+    background-color: #5865f2;
+    border-radius: 17px;
+}
+.discord-icon.active{
+    background-color:#5865f2;
+    border-radius: 17px;
+}
+
+.discord-icon:hover .s-name, .addServer:hover .a-name, .explore:hover .e-name{
+    display: block;
+}
+
+.discord-icon .s-name, .addServer .a-name, .explore .e-name{
+    position: absolute;
+    display: none;
+    font-size: 14px;
+    padding: 10px;
+    color: white;
+    transform: translateX(120px);
+    border-radius: 7px;
+    width: 140px;
+    word-spacing: 5px;
+    background-color: #0f1010;
+    cursor: auto;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.4);
+    z-index: 999;
+}
+.addServer .a-name{
+    width: 120px;
+    transform: translateX(110px);
+}
+.explore .e-name{
+    width: 200px;
+    transform: translateX(150px);
+}
+
+.s-name::before ,.a-name::before, .e-name::before{
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #0f1010;
+    transform: translate(-15px,5px) rotate(45deg);
+
+}
+
+.discord-icon .dms{
+    color: #fff;
+    font-size: 2rem;
+    
+}
+
+.line{
+    background-color: #35363C;
+    min-width: 40px;
+    min-height: 3px;
+}
+
+/* #23A559 */
+
+.addServer{
+    margin: 14px auto 0;
+    min-width: 50px;
+    min-height: 50px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: #313338;
+    transition: .2s linear;
+}
+.addServer:hover{
+    background-color: #23A559;
+    border-radius: 17px;
+}
+
+
+.addServer:hover .add-icon{
+    color: #fff;
+}
+
+.add-icon{
+    font-size: 1.7rem;
+    color: #23A559;
+}
+
+.explore > .add-icon{
+    font-size: 1.4rem;
+}
+
+.serverBarHoverEffect{
+    position: fixed;
+    height: 0px;
+    width: 0px;
+    background-color: #fff;
+    left: 0;
+    border-radius: 10px;
+    transform: translateX(-6px);
+    transition: .1s linear;
+}
+.serverBarHoverEffect.active{
+    width: 10px;
+    height: 40px;
+}
+
+.discord-icon:hover .serverBarHoverEffect, .addServer:hover .serverBarHoverEffect, .explore:hover .serverBarHoverEffect{
+    height: 20px;
+    width: 10px;
+}
+
+/* .disableHoverEffect{
+    pointer-events: none;
+} */
+
+.addServer.active{
+    border-radius: 17px;
+    background-color: #23A559;
+}
+.addServer.active .add-icon{
+    color: #fff;
+}

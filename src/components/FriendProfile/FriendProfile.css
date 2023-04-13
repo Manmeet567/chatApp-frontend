@@ -1,0 +1,48 @@
+.friendProfile{
+    display: flex;
+    align-items: center;
+    padding: 6px 0;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 2px;
+    background-color: transparent;
+}
+.friendProfile:focus{
+    background-color: rgba(148, 155, 164, 0.251);
+}
+.friendProfile:focus .userInfo{
+    color: #fff;
+}
+
+.friendProfile:hover{
+    background-color: rgba(148, 155, 164, 0.119);
+}
+.friendProfile:hover .userInfo{
+    color: #fff;
+}
+
+.friendProfile>.userProfile{
+    max-height: 32px;
+    max-width: 32px;
+    margin-left: 10px; 
+}
+
+.friendProfile>.userProfile img{
+    max-height: 32px;
+    max-width: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    border-radius: 50%;
+}
+
+.friendProfile>.userInfo{
+    font-size: 16px;
+    margin-left: 14px;
+    color: #949ba4;
+    margin-right: 14px;
+    overflow: hidden;
+}
+.friendProfile>.userInfo span{
+    white-space: nowrap;
+    max-width: 100%;
+}
