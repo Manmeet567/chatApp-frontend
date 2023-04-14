@@ -6,18 +6,23 @@ import {BsFillQuestionCircleFill} from 'react-icons/bs'
 function FmpNavbar() {
   return (
     <div className="fmp-navbar">
-        <div className="fmp-options">
-            <FaUserFriends/><span>Friends</span>
-            <p>All</p>
-            <p>Pending</p>
-            <p>Blocked</p>
-            <button>Add Friend</button>
-        </div>
+        <ul className="fmp-options">
+            <li><FaUserFriends className="f-icon" /><span>Friends</span></li>
+            <li>All</li>
+            <li>Pending</li>
+            <li>Blocked</li>
+            <li><button>Add Friend</button></li>
+        </ul>
 
         <div className="fmp-icon-options">
-            <p><MdQuickreply /></p>
-            <p><BsFillQuestionCircleFill /></p>
+            <div className='fmp-icon-container fmp-icon-container-1'><MdQuickreply/></div>
+            <div className="fmp-name-first">New Group DM</div>
+
+            <div className="fmp-line"></div>
+            <div className='fmp-icon-container fmp-icon-container-2'><BsFillQuestionCircleFill /></div>
+            <div className="fmp-name-second">Help</div>
         </div>
+        
 
     </div>
   )

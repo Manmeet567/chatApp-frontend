@@ -1,0 +1,9 @@
+.fmp-right-section{
+    min-width: 30%;
+    height: calc(100vh - 48px);
+    background-color: #313338;
+    color: rgb(255, 255, 255);
+    display: flex;
+    border-left: 1px solid #5e6063;
+    justify-content: end;
+}

@@ -1,0 +1,74 @@
+.fms-main-section{
+    min-width: 70%;
+    height: calc(100vh - 48px);
+    background-color: #313338;                                  
+    display: flex;
+    flex-direction: column;
+    padding-right: 8px;
+}
+.fms-search-bar{
+    margin:16px 20px 8px 30px;
+    display: flex;
+    align-items: center;
+    background-color:#1e1f22;
+    border-radius: 5px;
+}
+.fms-search-bar input{
+    width: 100%;
+    padding: 6px 10px;
+    font-size: 16px;
+    border-radius: 7px;
+    caret-color: #a4abb6;
+    color: #a4abb6;
+    background-color: transparent;
+}
+.fms-search-bar input::placeholder{
+    color: #a4abb6;
+    font-weight: 300;
+}
+.fms-search-bar button{
+    width: 5%;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    cursor: text;
+}
+.fms-search-bar button .fms-search-btn{
+    color: #a4abb6;
+    font-size: 20px;
+}
+
+.fms-all-friend-text{
+    margin: 16px 20px 8px 30px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    transform: scaleY(0.9);
+    font-weight: 450;
+    color: #a4abb6;
+}
+
+.fms-friend-list::-webkit-scrollbar{
+    width: 8px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+.fms-friend-list::-webkit-scrollbar-track{
+    background-color: #383a3f;
+    border-radius: 5px;
+}
+.fms-friend-list::-webkit-scrollbar-thumb{
+    background-color: #1e1f22;
+    border-radius: 5px;
+}
+
+.fms-friend-list{
+    width: 100%;
+    overflow: hidden scroll;
+    margin-top: 8px;
+    padding-bottom: 8px;
+    /* background-color: aquamarine; */
+}
+
+.fms-friend-list p{
+    height: 100vh;
+}
