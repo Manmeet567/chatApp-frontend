@@ -187,6 +187,9 @@
     width: 100%;
     overflow: hidden;
     white-space: nowrap;
+    margin: 0;
+    padding: 0;
+    line-height: 0.999;
 }
 
 .current-user-bar>.user-info>.user-name p:nth-child(1){
