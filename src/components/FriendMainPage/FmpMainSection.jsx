@@ -14,7 +14,9 @@ function FmpMainSection() {
         </div>
 
         <div className="fms-friend-list">
-            <p></p>
+            <div className="fms-friend-info">
+                
+            </div>
         </div>
     </section>
   )
