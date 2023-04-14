@@ -1,6 +1,7 @@
 
 .friendsBar{
-    width: 240px;
+    min-width: 240px;
+    max-width: 240px;
 }
 .findConversation{
     background-color: #2b2d31;

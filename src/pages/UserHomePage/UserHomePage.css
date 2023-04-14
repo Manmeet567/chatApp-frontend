@@ -5,7 +5,8 @@
 .userHomePage{
     max-height: 100vh;
     min-height: 100vh;
-    overflow: hidden;
     display: flex;
+    min-width: 100%;
+    max-width: 100%;
     font-family: "gg sans", " Noto Sans", " Helvetica Neue", Helvetica, Arial, sans-serif;
 }

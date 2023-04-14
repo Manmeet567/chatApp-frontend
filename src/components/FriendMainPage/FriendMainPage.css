@@ -1,0 +1,21 @@
+.friend-main-page{
+    display: flex;
+    flex-direction: column;
+    min-width: calc(100% - 320px);
+    max-width: calc(100% - 320px);
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+}
+
+/* fmp-navbar styles */
+.fmp-navbar{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+.fmp-navbar div{
+    display: flex;
+}

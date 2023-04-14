@@ -1,6 +1,7 @@
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
 import { Home,Login,Signup,UserHomePage } from './pages'
 import { useAuthContext } from './hooks/useAuthContext'
+import './App.css'
 
 function App() {
 
