@@ -6,8 +6,11 @@ import './FriendBar.css'
 import {Link} from 'react-router-dom'
 import FriendProfile from '../FriendProfile/FriendProfile'
 import Hiro from '../../assets/Hiro.jpg'
+import { useState } from 'react'
 
 function FriendBar() {
+
+  const [activeItem, setActiveItem] = useState('friends')
 
   return (
     <div className="friendsBar">
@@ -19,14 +22,14 @@ function FriendBar() {
           <div className="dmList" >
 
             <Link to="/channels/@me">
-              <button className='friends'>
+              <button onClick={() => setActiveItem('friends')} className={`friends ${activeItem === 'friends' ? 'active' : ''}`}>
                 <FaUserFriends className='friendIcon'/>
                 <span>Friends</span>
               </button>
             </Link>
 
             <Link to="#">
-              <button className="nitro friends" style={{marginTop:'2px', marginBottom:'20px'}}>
+              <button onClick={() => setActiveItem('nitro')} className={`nitro friends ${activeItem === 'nitro' ? 'active' : ''}`} style={{marginTop:'2px', marginBottom:'20px'}}>
                 <GiCloudyFork className='friendIcon'/>
                 <span>Nitro</span>
               </button>
@@ -42,12 +45,7 @@ function FriendBar() {
               </button>
             </div>
 
-            <FriendProfile />
-            <FriendProfile />
-            <FriendProfile />
-            <FriendProfile />
-            <FriendProfile />
-            <FriendProfile />
+            <FriendProfile activeItem={activeItem} setActiveItem={setActiveItem}/>
             
 
           </div>

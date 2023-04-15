@@ -1,9 +1,10 @@
 import './FriendProfile.css'
 import tadashi from '../../assets/tadashi.jpg'
 
-function FriendProfile() {
+function FriendProfile({activeItem, setActiveItem}) {
+
   return (
-    <button className="friendProfile">
+    <button onClick={() => setActiveItem('id')} className={`friendProfile ${activeItem === 'id' ? 'active' : ''}`}>
         <div className="userProfile">
             <img src={tadashi} alt="user" />
         </div>

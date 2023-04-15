@@ -32,6 +32,7 @@
     display: flex;
     justify-content: center;
     cursor: text;
+    margin-right: 5px;
 }
 .fms-search-bar button .fms-search-btn{
     color: #a4abb6;
@@ -69,5 +70,13 @@
     margin-right: 20px;
 }
 .fms-friend-info{
-    
+    display: block;
+}
+
+
+
+
+/* add Friend Box styles */
+.fms-search-friend{
+    margin: 16px 20px 8px 30px;
 }

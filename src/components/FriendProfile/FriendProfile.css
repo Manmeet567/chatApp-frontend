@@ -7,10 +7,10 @@
     margin-bottom: 2px;
     background-color: transparent;
 }
-.friendProfile:focus{
+.friendProfile.active{
     background-color: rgba(148, 155, 164, 0.251);
 }
-.friendProfile:focus .userInfo{
+.friendProfile.active .userInfo{
     color: #fff;
 }
 

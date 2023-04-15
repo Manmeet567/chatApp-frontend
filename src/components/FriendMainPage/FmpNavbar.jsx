@@ -3,15 +3,20 @@ import {FaUserFriends} from 'react-icons/fa'
 import {MdQuickreply} from 'react-icons/md'
 import {BsFillQuestionCircleFill} from 'react-icons/bs'
 
-function FmpNavbar() {
+function FmpNavbar({activeItem,setActiveItem}) {
+
+  const handleNavClick = (str) => {
+    setActiveItem(str)
+  }
+
   return (
     <div className="fmp-navbar">
         <ul className="fmp-options">
             <li><FaUserFriends className="f-icon" /><span>Friends</span></li>
-            <li>All</li>
-            <li>Pending</li>
-            <li>Blocked</li>
-            <li><button>Add Friend</button></li>
+            <li onClick={() => handleNavClick('all')} className={activeItem==='all' ? 'active':''}>All</li>
+            <li onClick={() => handleNavClick('pending')} className={activeItem==='pending' ? 'active':''}>Pending</li>
+            <li onClick={() => handleNavClick('blocked')} className={activeItem==='blocked' ? 'active':''}>Blocked</li>
+            <li onClick={() => handleNavClick('addFriend')}><button>Add Friend</button></li>
         </ul>
 
         <div className="fmp-icon-options">

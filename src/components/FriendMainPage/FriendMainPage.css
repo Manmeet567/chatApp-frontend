@@ -50,6 +50,11 @@
     border-radius: 5px;
 }
 
+.fmp-navbar ul li:not(:first-child):not(:last-child).active{
+    background-color: #878c926b;
+    color: #fff;
+}
+
 .fmp-navbar ul li:not(:first-child):not(:last-child):hover {
     background-color: #878c9235;
     color: #d4d9e0;

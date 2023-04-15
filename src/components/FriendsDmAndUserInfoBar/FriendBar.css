@@ -73,12 +73,12 @@
     margin-right: 16px;
 }
 
-.dmList .friends:focus {
+.dmList .friends.active {
     background-color: #6d717a73;
     color: #fff;
 }
 
-.dmList .friends:focus .friendIcon {
+.dmList .friends.active .friendIcon {
     color: #fff;
 }
 .dmList .friends:hover{

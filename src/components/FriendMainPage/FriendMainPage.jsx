@@ -2,14 +2,19 @@ import FmpMainSection from './FmpMainSection'
 import FmpNavbar from './FmpNavbar'
 import FmpRightSection from './FmpRightSection'
 import './FriendMainPage.css'
+import { useEffect, useState } from 'react'
 
 function FriendMainPage() {
+
+  const [navSelectedItem,setNavSelectedItem] = useState('all');
+
   return (
     <div className="friend-main-page">
-        <FmpNavbar />
+        <FmpNavbar activeItem={navSelectedItem} setActiveItem={setNavSelectedItem}/>
         
         <div className="fmp-main">
-          <FmpMainSection />
+          <FmpMainSection activeNavItem={navSelectedItem}/>
+
           <FmpRightSection />
         </div>
 
