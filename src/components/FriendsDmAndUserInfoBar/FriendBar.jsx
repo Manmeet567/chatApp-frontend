@@ -7,8 +7,17 @@ import {Link} from 'react-router-dom'
 import FriendProfile from '../FriendProfile/FriendProfile'
 import Hiro from '../../assets/Hiro.jpg'
 import { useState } from 'react'
+import UserDetails from './UserDetails'
+import { useAuthContext } from '../../hooks/useAuthContext'
+
+
 
 function FriendBar() {
+
+  const {user} = useAuthContext()
+  const currentUser = user.user;
+
+  let paddedNum = currentUser.uniqueNameCounter.toString().padStart(4,"0");
 
   const [activeItem, setActiveItem] = useState('friends')
 
@@ -45,7 +54,7 @@ function FriendBar() {
               </button>
             </div>
 
-            <FriendProfile activeItem={activeItem} setActiveItem={setActiveItem}/>
+            <FriendProfile friends={currentUser.friends} activeItem={activeItem} setActiveItem={setActiveItem}/>
             
 
           </div>
@@ -55,10 +64,12 @@ function FriendBar() {
             <button className="user-info">
               <img src={Hiro} alt=":)" />
               <div className="user-name">
-                <p>HIRO</p>
-                <p>#3518</p>
+                <p>{currentUser.username}</p>
+                <p>#{paddedNum}</p>
               </div>
             </button>
+
+            <UserDetails />
 
             <button className="user-settings-btn">
               <IoSettingsSharp className='settings-btn'/>

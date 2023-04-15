@@ -9,10 +9,6 @@ import FriendlyWumpus from '../../assets/friendWumpus.svg'
 
 function FmpMainSection({activeNavItem}) {
 
-  useEffect(() => {
-    console.log(activeNavItem)
-  }, [activeNavItem])
-
   const displayOption = [{
     display:'none'
   },
