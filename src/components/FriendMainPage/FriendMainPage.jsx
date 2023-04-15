@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 
 function FriendMainPage() {
 
-  const [navSelectedItem,setNavSelectedItem] = useState('all');
+  const [navSelectedItem,setNavSelectedItem] = useState('online');
 
   return (
     <div className="friend-main-page">

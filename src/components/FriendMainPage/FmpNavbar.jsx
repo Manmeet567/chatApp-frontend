@@ -13,6 +13,7 @@ function FmpNavbar({activeItem,setActiveItem}) {
     <div className="fmp-navbar">
         <ul className="fmp-options">
             <li><FaUserFriends className="f-icon" /><span>Friends</span></li>
+            <li onClick={() => handleNavClick('online')} className={activeItem==='online' ? 'active':''}>Online</li>
             <li onClick={() => handleNavClick('all')} className={activeItem==='all' ? 'active':''}>All</li>
             <li onClick={() => handleNavClick('pending')} className={activeItem==='pending' ? 'active':''}>Pending</li>
             <li onClick={() => handleNavClick('blocked')} className={activeItem==='blocked' ? 'active':''}>Blocked</li>

@@ -38,6 +38,12 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    /* font-family: "gg sans",
+        " Noto Sans",
+        " Helvetica Neue",
+        Helvetica,
+        Arial,
+        sans-serif; */
     text-decoration: none;
 }
 body{

@@ -28,7 +28,8 @@
     display: flex;
     margin: 0 15px 0 20px;
     align-items: center;
-    color: #d4d9e0;
+    color: #fff;
+    font-weight: 500;
     border-right: 1px solid #878c9296;
     padding-right: 20px;
     cursor: default;
@@ -44,19 +45,19 @@
     margin: 0 8px;
     font-size: 16px;
     font-weight: 500;
-    color: #878C92;
+    color: #9ca2a9;
     cursor: pointer;
     padding: 2px 8px;
     border-radius: 5px;
 }
 
 .fmp-navbar ul li:not(:first-child):not(:last-child).active{
-    background-color: #878c926b;
+    background-color: #878c9245;
     color: #fff;
 }
 
 .fmp-navbar ul li:not(:first-child):not(:last-child):hover {
-    background-color: #878c9235;
+    background-color: #878c9224;
     color: #d4d9e0;
 }
 
