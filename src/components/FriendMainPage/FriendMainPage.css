@@ -118,7 +118,7 @@
     position: absolute;
     height: 10px;
     width: 10px;
-    background-color: #1a1b1e;
+    background-color: #1e1f22;
     transform: translate(70px, -10px) rotate(45deg);
 }
 .fmp-name-second::before{
@@ -126,7 +126,7 @@
     position: absolute;
     height: 10px;
     width: 10px;
-    background-color: #1a1b1e;
+    background-color: #1e1f22;
     transform: translate(15px, -10px) rotate(45deg);
 }
 .fmp-icon-container-1:hover+.fmp-name-first{

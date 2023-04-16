@@ -3,7 +3,6 @@ import tadashi from '../../assets/tadashi.jpg'
 
 function FriendProfile({activeItem, setActiveItem, friends}) {
 
-  console.log(friends)
 
   return (
     <button onClick={() => setActiveItem('id')} className={`friendProfile ${activeItem === 'id' ? 'active' : ''}`}>
