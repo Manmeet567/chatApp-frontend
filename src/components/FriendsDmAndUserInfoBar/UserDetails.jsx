@@ -3,13 +3,18 @@ import {MdOutlineFileCopy} from 'react-icons/md'
 import {RiPencilFill} from 'react-icons/ri'
 import {FaSmile} from 'react-icons/fa'
 import Hiro from '../../assets/Hiro.jpg'
-import {useRef, useState} from 'react'
+import {useRef, useState, useEffect} from 'react'
 
 
 function UserDetails({displayOption, user}) {
 
   const [copyTextContent,setCopyTextContent] = useState('click to copy username')
   const divRef = useRef(null);
+
+  const [udTopBg,setUdTopBg] = useState('#000000')
+  const handleColorChange = (event) => {
+    setUdTopBg(event.target.value); // update the udTopBg value when the color is changed
+  };
 
   const copyText = () => {
     const textToCopy = divRef.current.querySelector('h2').innerText;;
@@ -36,7 +41,8 @@ function UserDetails({displayOption, user}) {
   return (
     <div className="user-details" style={displayOption === true ? {display:"block"} : {display:"none"}}>
 
-      <div className="ud-top-bg">
+      <div className="ud-top-bg" style={{backgroundColor: udTopBg}}>
+        <input style={{position:'fixed', width:'40px', height:'40px',cursor:'pointer', transform:"translateX(-20px)", borderRadius:'50%', opacity:0}} type='color' name='color' value={udTopBg} onChange={handleColorChange} />
         <button><RiPencilFill style={{color:"#fff", fontSize:"18px"}}/></button>
       </div>
 
@@ -53,8 +59,8 @@ function UserDetails({displayOption, user}) {
         </div>
 
         <div className="udui-extra-info">
-          <h5>ABOUT ME</h5>
-          <p>Lorem ipsum dolors sit amet consectetur adipisicing elit. Ducimus aut officia adg facere eveniet tempora sae kefnf adofj</p>
+          <h5 style={{display:`${user.user.status === null ? 'none' : 'block'}`}}>ABOUT ME</h5>
+          <p style={{display:`${user.user.status === null ? 'none' : 'block'}`}}>{user.user.status}</p>
           <h5>MISCORD MEMBER SINCE</h5>
           <p>{formattedDate}</p>
         </div>

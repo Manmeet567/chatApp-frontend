@@ -41,14 +41,14 @@ function FmpMainSection({activeNavItem}) {
   }, [activeNavItem])
 
   return (
-    <section className="fms-main-section">
+    <section className="fms-main-section" style={{userSelect:'none'}}>
 
         {/* Online pending and Blocked friends  when their data is zero*/}
         <div className="fms-online" style={activeNavItem !== 'addFriend' ? displayOption[2] : displayOption[0]}>
           <div className="fms-no-one-online">
-            <img className='fms-img' src={`${activeNavItem === 'online' ? NoOneOnline : ''}${activeNavItem === 'pending' ? PendingWumpus : ''}${activeNavItem === 'blocked' ? BlockedWumpus : ''}${activeNavItem === 'all' ? FriendlyWumpus : ''}`} alt="No one is Online" />
+            <img className='fms-img' style={{userSelect:'none'}} src={`${activeNavItem === 'online' ? NoOneOnline : ''}${activeNavItem === 'pending' ? PendingWumpus : ''}${activeNavItem === 'blocked' ? BlockedWumpus : ''}${activeNavItem === 'all' ? FriendlyWumpus : ''}`} alt="No one is Online" />
 
-            <p>{`${activeNavItem === 'online' ? "No one's around to play with Wumpus." : ''}${activeNavItem === 'all' ? "Wumpus is waiting on friends. You don't have to though!" : ''}${activeNavItem === 'pending' ? "There are no pending friend requests. Here's Wumpus for now." : ''}${activeNavItem === 'blocked' ? "You can't unblock the Wumpus." : ''}`}</p>
+            <p style={{userSelect:'none'}}>{`${activeNavItem === 'online' ? "No one's around to play with Wumpus." : ''}${activeNavItem === 'all' ? "Wumpus is waiting on friends. You don't have to though!" : ''}${activeNavItem === 'pending' ? "There are no pending friend requests. Here's Wumpus for now." : ''}${activeNavItem === 'blocked' ? "You can't unblock the Wumpus." : ''}`}</p>
           </div>
         </div>
 
@@ -87,8 +87,8 @@ function FmpMainSection({activeNavItem}) {
             </div>
           </div>
           <div className="fmssf-img">
-            <img src={WaitingWumpus} alt="waiting for friends" />
-            <p>Wumpus is waiting on friends. You don't have to though!</p>
+            <img style={{userSelect:'none'}} src={WaitingWumpus} alt="waiting for friends" />
+            <p style={{userSelect:'none'}}>Wumpus is waiting on friends. You don't have to though!</p>
           </div>
           
         </div>

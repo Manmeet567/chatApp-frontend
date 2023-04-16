@@ -10,7 +10,7 @@ function FmpNavbar({activeItem,setActiveItem}) {
   }
 
   return (
-    <div className="fmp-navbar">
+    <div className="fmp-navbar" style={{userSelect:'none'}}>
         <ul className="fmp-options">
             <li><FaUserFriends className="f-icon" /><span>Friends</span></li>
             <li onClick={() => handleNavClick('online')} className={activeItem==='online' ? 'active':''}>Online</li>

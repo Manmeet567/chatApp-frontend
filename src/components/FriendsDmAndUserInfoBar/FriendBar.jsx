@@ -7,7 +7,7 @@ import './UserDetails.css'
 import {Link} from 'react-router-dom'
 import FriendProfile from '../FriendProfile/FriendProfile'
 import Hiro from '../../assets/Hiro.jpg'
-import { useEffect, useState } from 'react'
+import { useState, useEffect,useRef } from 'react'
 import UserDetails from './UserDetails'
 import { useAuthContext } from '../../hooks/useAuthContext'
 
@@ -17,6 +17,24 @@ function FriendBar() {
 
   const {user} = useAuthContext()
   const currentUser = user.user;
+  
+  const userDetailsRef = useRef(null);
+  const userDetailButtonRef = useRef(null);
+
+  useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (userDetailsRef.current && !userDetailsRef.current.contains(event.target) && 
+      userDetailButtonRef.current && !userDetailButtonRef.current.contains(event.target)) {
+      setUserDetailDisplay(false);
+    }
+  };
+
+  document.addEventListener('click', handleClickOutside);
+
+  return () => {
+    document.removeEventListener('click', handleClickOutside);
+  };
+}, []);
 
   let paddedNum = currentUser.uniqueNameCounter.toString().padStart(4,"0");
 
@@ -41,7 +59,7 @@ function FriendBar() {
 
 
   return (
-    <div className="friendsBar">
+    <div className="friendsBar" style={{userSelect:'none'}}>
 
           <div className="findConversation">
             <button>Find or start a conversation</button>
@@ -80,7 +98,7 @@ function FriendBar() {
 
           <div className="current-user-bar">
 
-            <button onClick={() => setUserDetailDisplay(prev => !prev)} className="user-info">
+            <button ref={userDetailButtonRef} onClick={() => setUserDetailDisplay(prev => !prev)} className="user-info">
               
               {currentUser.avatar ===null ? <img src="https://www.svgviewer.dev/static-svgs/34446/discord-v2.svg" alt=":)" /> : <img src={Hiro} alt=":)" />}
 
@@ -92,7 +110,10 @@ function FriendBar() {
               </div>
             </button>
 
-            <UserDetails displayOption = {userDetailDislpay} user = {user}/>
+            <div ref={userDetailsRef} style={{position:'fixed', transform:'translate(-10px, -210px)', display:`${userDetailDislpay ? 'block' : 'none'}`}} >
+              <UserDetails displayOption = {userDetailDislpay} user = {user}/>
+            </div>
+      
 
             <button className="user-settings-btn">
               <IoSettingsSharp className='settings-btn'/>
