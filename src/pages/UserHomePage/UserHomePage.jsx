@@ -19,7 +19,7 @@ function UserHomePage() {
     <div className="userHomePage">
         <ServerListSidebar />
         <FriendBar />
-        <button onClick={handleLogout}>Logout</button>
+        {/* <button onClick={handleLogout}>Logout</button> */}
         {/* checking github */}
 
         <FriendMainPage />

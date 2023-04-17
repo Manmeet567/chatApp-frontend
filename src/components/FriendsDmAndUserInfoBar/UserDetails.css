@@ -5,7 +5,7 @@
     position: fixed;
     border-radius: 8px;
     transform: translate(-30px, -250px);
-    overflow: hidden;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,6 +15,8 @@
     width: 100%;
     background-color: rgb(0, 0, 0);
     height: 60px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
     display: flex;
     justify-content: end;
     align-items: center;
@@ -186,7 +188,11 @@
     justify-content: space-between;
     margin: 4px 0 0;
     padding: 5px 10px;
+    cursor: pointer;
     border-radius: 5px;
+    width: 100%;
+    color:#fff;
+    background-color: transparent;
 }
 .udui-set-active-status:hover{
     background-color: #7679854a;
@@ -203,8 +209,84 @@
     padding: 5px 10px;
     border-radius: 5px;
     align-items: center;
+    margin: 5px 0;
+    cursor: pointer;
 }
 .udui-set-custom-status:hover{
     background-color: #7679854a;
     color: #fff;
+}
+
+.activeStatusContainer{
+    position: absolute;
+    width: 350px;
+    height: 216px;
+    background-color: transparent;
+    z-index: 5;
+    transform: translate(270px, -60px);
+    padding: 0 20px;
+    border-radius: 8px;
+}
+.asc-main{
+    width: 100%;
+    background-color: #111214;
+    height: 100%;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ascm-on-btn{
+    width: 100%;
+    display: flex;
+    padding: 8px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    align-items: center;
+    background-color: transparent;
+    color: #fff;
+}
+.ascm-on-btn:hover{
+    background-color: #5865f2;
+}
+.st-online{
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #32ae5f;
+    margin-right: 10px;
+}
+.ascm-on-btn:hover .st-online{
+    background-color: #fff;
+}
+
+.ascm-idle-btn{
+    width: 100%;
+    display: flex;
+    padding: 8px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    align-items: center;
+    background-color: transparent;
+    color: #fff;
+}
+.st-idle{
+    margin-right: 10px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #f0b232;
+}
+.sti-idle{
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: #111214;
+}
+.ascm-idle-btn:hover, .ascm-idle-btn:hover .sti-idle{
+    background-color: #5865f2;
+}
+.ascm-idle-btn:hover .st-idle{
+    background-color: #fff;
 }

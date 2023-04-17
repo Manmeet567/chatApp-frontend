@@ -9,7 +9,27 @@ import {useRef, useState, useEffect} from 'react'
 function UserDetails({displayOption, user}) {
 
   const [copyTextContent,setCopyTextContent] = useState('click to copy username')
+
+  const [activeStatusDisplay,setActiveStatusDisplay] = useState(false);
   const divRef = useRef(null);
+  const activeStatusButtonRef = useRef(null);
+  const activeStatusBoxDisplayRef = useRef(null);
+
+//   useEffect(() => {
+//   const handleClickOutside = (event) => {
+//     if (activeStatusBoxDisplayRef.current && !activeStatusBoxDisplayRef.current.contains(event.target) && 
+//       activeStatusButtonRef.current && !activeStatusButtonRef.current.contains(event.target)) {
+//       setActiveStatusDisplay(false);
+//     }
+//   };
+
+//   document.addEventListener('click', handleClickOutside);
+
+//   return () => {
+//     document.removeEventListener('click', handleClickOutside);
+//   };
+// }, []);
+
 
   const [udTopBg,setUdTopBg] = useState('#000000')
   const handleColorChange = (event) => {
@@ -66,13 +86,34 @@ function UserDetails({displayOption, user}) {
         </div>
 
         <div className="udui-active-options">
-          <div className="udui-set-active-status">
+          <button onMouseEnter={() => setActiveStatusDisplay(true)} className="udui-set-active-status" onMouseLeave={() => setActiveStatusDisplay(false)}>
             <div style={{display:"flex", alignItems:'center'}}>
               <div className="udas-icon invisible" style={{position:'relative', marginRight:'10px'}}></div>
               <p style={{fontSize:'14px'}}>Invisible</p>
             </div>
             <div className="udui-arrow-icon">
-              <button>&gt;</button>
+              <button style={{cursor:'pointer'}}>&gt;</button>
+            </div>
+          </button>
+
+          <div onMouseEnter={() => setActiveStatusDisplay(true)} onMouseLeave={() => setActiveStatusDisplay(false)} style={{display:`${activeStatusDisplay ? 'block' : 'none'}`}} className="activeStatusContainer">
+            <div className="asc-main">
+
+              <button className="ascm-on-btn">
+                <div className="st-online"></div>
+                <p>Online</p>
+              </button>
+
+              <div className="ascm-line" style={{backgroundColor:"#adadad82", width:'100%', height:'1px',margin:"10px 0"}}></div>
+      
+              <button className='ascm-idle-btn'>
+                <div className="st-idle"><div className="sti-idle"></div></div>
+                <p>Idle</p>
+              </button>
+
+              <button className='ascm-dnd'>
+                
+              </button>
             </div>
           </div>
 
