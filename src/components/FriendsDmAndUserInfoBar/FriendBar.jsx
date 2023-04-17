@@ -50,7 +50,7 @@ function FriendBar() {
       forDnd:{left:'118px', height:'10px', width:'10px',outline:'4px solid #232428',bottom:'9px', display:"flex", alignItems:"center", justifyContent:"center", backgroundColor:"#f23f43"}
     },
     udasIcon:{
-      forInvisible:{height:'10px', width:'10px', outline:'3px solid #232428',border:'3px solid rgba(183, 221, 255, 0.461)', border:'3px solid rgba(183, 221, 255, 0.461)', backgroundColor:"#232428", borderRadius:"50%"},
+      forInvisible:{height:'10px', width:'10px', outline:'3px solid #232428',border:'3px solid rgba(183, 221, 255, 0.461)', backgroundColor:"#232428", borderRadius:"50%"},
       forOnline:{height:'10px', width:'10px', backgroundColor:'#32ae5f',border:'none'},
       forIdle:{height:'6px', width:'7px', borderRadius:'50%',backgroundColor:"#232428", border:"none"},
       forDnd:{backgroundColor:"#232428", height:"2px", width:"8px",border:'none', borderRadius:'2px'}
