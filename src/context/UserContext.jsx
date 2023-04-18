@@ -8,6 +8,11 @@ export const userReducer = (state,action) => {
             return {
                 user:action.payload
             };
+
+        case 'FRIENDS':
+            return {
+                friends:action.payload
+            }
         
         default: return state;
     }

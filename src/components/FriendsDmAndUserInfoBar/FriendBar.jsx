@@ -10,6 +10,7 @@ import Hiro from '../../assets/Hiro.jpg'
 import { useState, useEffect,useRef } from 'react'
 import UserDetails from './UserDetails'
 import { useAuthContext } from '../../hooks/useAuthContext'
+import { useUserContext } from '../../hooks/useUserContext'
 
 
 
@@ -57,6 +58,8 @@ function FriendBar() {
     }
   }
 
+  // friend profile stuff
+  const {friends} = useUserContext();
 
   return (
     <div className="friendsBar" style={{userSelect:'none'}}>
@@ -91,7 +94,13 @@ function FriendBar() {
               </button>
             </div>
 
-            <FriendProfile friends={currentUser.friends} activeItem={activeItem} setActiveItem={setActiveItem}/>
+          
+            {friends && friends.map((friend) => {
+              return (
+                <FriendProfile key={friend._id} activeItem={activeItem} setActiveItem={setActiveItem} friend = {friend}/>
+              )
+            })}
+  
             
 
           </div>

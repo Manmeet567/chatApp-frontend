@@ -39,7 +39,7 @@ const Signup = () => {
                         
                         <div>
                             <label htmlFor="" className="login__label">Username</label>
-                            <input type="text" placeholder="Username" required className="login__input" onChange={(e) => setUsername(e.target.value)} value={username}/>
+                            <input type="text" placeholder="Username" required className="login__input" onChange={(e) => setUsername(e.target.value)} value={username} autoFocus/>
                         </div>
                         
                         <div>

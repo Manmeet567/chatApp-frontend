@@ -110,7 +110,7 @@ function UserDetails({displayOption, user,activeStatus, setActiveStatus}) {
 
               <div className={`ud-active-status ${activeStatus}`} style={{position:'relative', bottom:0, outline:'none',borderRadius:'50%',overflow:'hidden', margin:'0px 5px'}}><div className={`udas-icon ${activeStatus}`} style={{position:'relative'}}></div></div>
               
-              <p style={{fontSize:'14px'}}>Invisible</p>
+              <p style={{fontSize:'14px'}}>{activeStatus === 'online' ? 'Online' : ''}{activeStatus === 'idle' ? 'Idle' : ''}{activeStatus === 'dnd' ? 'Do Not Disturb' : ''}{activeStatus === 'invisible' ? 'Invisible' : ''}</p>
             </div>
             <div className="udui-arrow-icon">
               <p style={{cursor:'pointer'}}>&gt;</p>

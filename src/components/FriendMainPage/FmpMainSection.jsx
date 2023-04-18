@@ -6,6 +6,8 @@ import WaitingWumpus from '../../assets/waitingForFriends.svg';
 import PendingWumpus from '../../assets/pendingWumpus.svg'
 import BlockedWumpus from '../../assets/blockedWumpus.svg'
 import FriendlyWumpus from '../../assets/friendWumpus.svg'
+import { useUserContext } from '../../hooks/useUserContext';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 function FmpMainSection({activeNavItem}) {
 
@@ -39,6 +41,55 @@ function FmpMainSection({activeNavItem}) {
         setTitleText('ADD FRIEND')
       }
   }, [activeNavItem])
+
+
+  const [username,setUsername] = useState('')
+  const [userId, setUserId] = useState('')
+  const [friendRequestError, setFriendRequestError] = useState(null);
+
+  function validateInput(username, userId) {
+  // check if username is empty
+  if (!username) {
+    setFriendRequestError('Username is required')
+    return false;
+  }
+  
+  // check if userId is exactly 5 characters
+  if(!userId){
+    setFriendRequestError('User Id is required')
+    return false;
+  }
+
+  if (userId.length !== 5) {
+    setFriendRequestError('4 digit Id required')
+    return false;
+  }
+  
+  // check if first character is '#'
+  if (userId[0] !== '#') {
+    setFriendRequestError("First character of User's Id should be '#'")
+    return false;
+  }
+  
+  // check if remaining characters are numbers
+  if (isNaN(userId.substr(1))) {
+    setFriendRequestError('Please enter a valid user ID, Only numbers are allowed in User ID')
+    return false;
+  }
+  setFriendRequestError('')
+  // if all checks pass, return true
+  return true;
+}
+
+  const {user} = useAuthContext()
+  
+
+  function sendFriendRequest(username,userId) {
+    if(validateInput(username,userId)){
+      console.log(username+userId)
+    }
+  }
+
 
   return (
     <section className="fms-main-section" style={{userSelect:'none'}}>
@@ -80,10 +131,11 @@ function FmpMainSection({activeNavItem}) {
             <p>You can add a friend with their Discord Tag. It's cAsE-sEnSitIvE!</p>
             <div className="fmssf-input-box">
               <div className="fmssf-input">
-                <input type="text" placeholder='Enter Username'/>
-                <input type="text" placeholder='#0000'/>
+                <input type="text" placeholder='Enter Username' value={username} onChange={(e) => setUsername(e.target.value)} required />
+                <input type="text" placeholder='#0000' onChange={(e) => setUserId(e.target.value)} value={`${userId}`}  maxLength={5} required/>
               </div>
-              <button>Send Friend Request</button>
+              <button style={{marginTop:'25px'}} onClick={() => sendFriendRequest(username, userId)}>Send Friend Request</button>
+              <p style={{margin:'15px 0 0', fontSize:'14px', color:'red'}}>{friendRequestError}</p>
             </div>
           </div>
           <div className="fmssf-img">

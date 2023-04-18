@@ -38,7 +38,7 @@ function Login() {
                     <div className="login__inputs">
                         <div>
                             <label htmlFor="" className="login__label">Email</label>
-                            <input type="email" autoComplete='off' placeholder="Enter your email address" required className="login__input" onChange={(e) => setEmail(e.target.value)} value={email}/>
+                            <input type="email" autoComplete='off' placeholder="Enter your email address" required className="login__input" onChange={(e) => setEmail(e.target.value)} value={email} autoFocus/>
                         </div>
 
                         <div>

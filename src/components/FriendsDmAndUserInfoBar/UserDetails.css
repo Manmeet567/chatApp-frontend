@@ -223,7 +223,7 @@
     height: 235px;
     background-color: transparent;
     z-index: 5;
-    transform: translate(270px, -50px);
+    transform: translate(270px, -80px);
     padding: 0 20px;
     border-radius: 5px;
 }

@@ -1,17 +1,17 @@
 import './FriendProfile.css'
 import tadashi from '../../assets/tadashi.jpg'
 
-function FriendProfile({activeItem, setActiveItem, friends}) {
+function FriendProfile({activeItem, setActiveItem, friend}) {
 
 
   return (
     <button onClick={() => setActiveItem('id')} className={`friendProfile ${activeItem === 'id' ? 'active' : ''}`}>
         <div className="userProfile">
-            <img src={tadashi} alt="user" />
+            {friend.avatar ===null ? <img src="https://www.svgviewer.dev/static-svgs/34446/discord-v2.svg" alt=":)" /> : <img src={Hiro} alt=":)" />}
         </div>
 
         <div className="userInfo">
-            <span>Tadashi</span>
+            <span>{friend.username}</span>
         </div>
     </button>
   )

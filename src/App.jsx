@@ -2,10 +2,13 @@ import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
 import { Home,Login,Signup,UserHomePage } from './pages'
 import { useAuthContext } from './hooks/useAuthContext'
 import './App.css'
+import { useUserContext } from './hooks/useUserContext'
 
 function App() {
 
   const {user} = useAuthContext()
+  const {dispatch: friendDispatch} = useUserContext()
+  
 
   return (
       <BrowserRouter>
