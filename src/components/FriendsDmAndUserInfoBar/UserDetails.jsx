@@ -108,7 +108,7 @@ function UserDetails({displayOption, user,activeStatus, setActiveStatus}) {
           <button onMouseEnter={() => setActiveStatusDisplay(true)} className="udui-set-active-status" onMouseLeave={() => setActiveStatusDisplay(false)}>
             <div style={{display:"flex", alignItems:'center'}}>
 
-              <div className={`ud-active-status ${activeStatus}`} style={{position:'relative', bottom:0, outline:'none',borderRadius:'50%'}}><div className={`udas-icon ${activeStatus}`} style={{position:'relative'}}></div></div>
+              <div className={`ud-active-status ${activeStatus}`} style={{position:'relative', bottom:0, outline:'none',borderRadius:'50%',overflow:'hidden', margin:'0px 5px'}}><div className={`udas-icon ${activeStatus}`} style={{position:'relative'}}></div></div>
               
               <p style={{fontSize:'14px'}}>Invisible</p>
             </div>
