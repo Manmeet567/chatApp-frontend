@@ -8,8 +8,8 @@ function ServerIcon({activeItem, onServerClick}) {
   const { user } = useAuthContext()
   const { servers, dispatch } = useServersContext()
 
-    useEffect(() => {
 
+    useEffect(() => {
       const fetchServers = async () => {
         const response = await fetch('http://localhost:4000/api/server/getServer', {
           headers: {

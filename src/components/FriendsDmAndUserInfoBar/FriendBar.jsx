@@ -17,7 +17,7 @@ function FriendBar() {
 
   const {user} = useAuthContext()
   const currentUser = user.user;
-  
+
   const userDetailsRef = useRef(null);
   const userDetailButtonRef = useRef(null);
 
@@ -37,23 +37,23 @@ function FriendBar() {
 }, []);
 
   let paddedNum = currentUser.uniqueNameCounter.toString().padStart(4,"0");
-
+  
   const [activeItem, setActiveItem] = useState('friends')
   const [userDetailDislpay,setUserDetailDisplay] = useState(false);
-  const [activeStatus, setActiveStatus] = useState('Invisible')
+  const [activeStatus, setActiveStatus] = useState(user.user.status)
 
   const activeStatusStyles = {
     udActiveStatus:{
-      forInvisible:{left:'118px', height:'10px', width:'10px',outline:'4px solid #232428',bottom:'9px'},
-      forOnline:{left:'118px', height:'10px', width:'10px',bottom:'9px',border:'none',outline:'4px solid #232428'},
-      forIdle:{left:'118px', height:'10px', width:'10px',outline:'4px solid #232428',bottom:'9px',backgroundColor:'#f0b232', border:"none"},
-      forDnd:{left:'118px', height:'10px', width:'10px',outline:'4px solid #232428',bottom:'9px', display:"flex", alignItems:"center", justifyContent:"center", backgroundColor:"#f23f43"}
+      forinvisible:{left:'118px', height:'10px', width:'10px',outline:'4px solid #232428',bottom:'9px'},
+      foronline:{left:'118px', height:'10px', width:'10px',bottom:'9px',border:'none',outline:'4px solid #232428'},
+      foridle:{left:'118px', height:'10px', width:'10px',outline:'4px solid #232428',bottom:'9px',backgroundColor:'#f0b232', border:"none"},
+      fordnd:{left:'118px', height:'10px', width:'10px',outline:'4px solid #232428',bottom:'9px', display:"flex", alignItems:"center", justifyContent:"center", backgroundColor:"#f23f43"}
     },
     udasIcon:{
-      forInvisible:{height:'10px', width:'10px', outline:'3px solid #232428',border:'3px solid rgba(183, 221, 255, 0.461)', backgroundColor:"#232428", borderRadius:"50%"},
-      forOnline:{height:'10px', width:'10px', backgroundColor:'#32ae5f',border:'none'},
-      forIdle:{height:'6px', width:'7px', borderRadius:'50%',backgroundColor:"#232428", border:"none"},
-      forDnd:{backgroundColor:"#232428", height:"2px", width:"8px",border:'none', borderRadius:'2px'}
+      forinvisible:{height:'10px', width:'10px', outline:'3px solid #232428',border:'3px solid rgba(183, 221, 255, 0.461)', backgroundColor:"#232428", borderRadius:"50%"},
+      foronline:{height:'10px', width:'10px', backgroundColor:'#32ae5f',border:'none'},
+      foridle:{height:'6px', width:'7px', borderRadius:'50%',backgroundColor:"#232428", border:"none"},
+      fordnd:{backgroundColor:"#232428", height:"2px", width:"8px",border:'none', borderRadius:'2px'}
     }
   }
 
@@ -111,7 +111,7 @@ function FriendBar() {
             </button>
 
             <div ref={userDetailsRef} style={{position:'fixed', transform:'translate(-10px, -210px)', display:`${userDetailDislpay ? 'block' : 'none'}`}} >
-              <UserDetails displayOption = {userDetailDislpay} user = {user}/>
+              <UserDetails displayOption = {userDetailDislpay} user = {user} activeStatus={activeStatus} setActiveStatus={setActiveStatus} />
             </div>
       
 

@@ -4,31 +4,15 @@ import {RiPencilFill} from 'react-icons/ri'
 import {FaSmile} from 'react-icons/fa'
 import Hiro from '../../assets/Hiro.jpg'
 import {useRef, useState, useEffect} from 'react'
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 
-function UserDetails({displayOption, user}) {
+function UserDetails({displayOption, user,activeStatus, setActiveStatus}) {
 
   const [copyTextContent,setCopyTextContent] = useState('click to copy username')
 
   const [activeStatusDisplay,setActiveStatusDisplay] = useState(false);
   const divRef = useRef(null);
-  const activeStatusButtonRef = useRef(null);
-  const activeStatusBoxDisplayRef = useRef(null);
-
-//   useEffect(() => {
-//   const handleClickOutside = (event) => {
-//     if (activeStatusBoxDisplayRef.current && !activeStatusBoxDisplayRef.current.contains(event.target) && 
-//       activeStatusButtonRef.current && !activeStatusButtonRef.current.contains(event.target)) {
-//       setActiveStatusDisplay(false);
-//     }
-//   };
-
-//   document.addEventListener('click', handleClickOutside);
-
-//   return () => {
-//     document.removeEventListener('click', handleClickOutside);
-//   };
-// }, []);
 
 
   const [udTopBg,setUdTopBg] = useState('#000000')
@@ -51,12 +35,47 @@ function UserDetails({displayOption, user}) {
     }, 3000);
   }
 
+
   const dateStr = user.user.createdAt
   const date = new Date(dateStr);
   const options = { month: 'short', day: '2-digit', year: 'numeric' };
   const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date)
 
-  const activeStatus = ['online', 'idle', 'do-not-disturb', 'invisible']
+  const { dispatch } = useAuthContext();
+  const token = user.token;
+
+  useEffect(() => {
+
+    const updateStatus = async () => {
+      try{
+
+        const response = await fetch('http://localhost:4000/api/userProfile/updateStatus',{
+          method:'PATCH',
+          headers:{
+            'Content-Type':'application/json',
+            'authorization' : `Bearer ${token}`
+          },
+          body: JSON.stringify({ status:activeStatus })
+        });
+
+        const data = await response.json();
+        let updateduser = {
+          user:data.updatedUserStatus,
+          token:token
+        }
+      
+        localStorage.setItem('user', JSON.stringify(updateduser));
+        dispatch({type:'UPDATE_USER', payload:updateduser})
+
+        
+      }
+      catch(error){
+        console.log(error);
+      }
+    }
+    updateStatus()
+
+  },[activeStatus])
 
   return (
     <div className="user-details" style={displayOption === true ? {display:"block"} : {display:"none"}}>
@@ -68,7 +87,7 @@ function UserDetails({displayOption, user}) {
 
       <div className="ud-avatar">
         <img className='ud-avatar-img' src={user.user.avatar === null ? "https://www.svgviewer.dev/static-svgs/34446/discord-v2.svg" : {Hiro}} alt=":)" />
-        <div className="ud-active-status "><div className="udas-icon invisible"></div></div>
+        <div className={`ud-active-status ${activeStatus}`}><div className={`udas-icon ${activeStatus}`}></div></div>
       </div>
 
       <div className="ud-user-info">
@@ -88,31 +107,45 @@ function UserDetails({displayOption, user}) {
         <div className="udui-active-options">
           <button onMouseEnter={() => setActiveStatusDisplay(true)} className="udui-set-active-status" onMouseLeave={() => setActiveStatusDisplay(false)}>
             <div style={{display:"flex", alignItems:'center'}}>
-              <div className="udas-icon invisible" style={{position:'relative', marginRight:'10px'}}></div>
+
+              <div className={`ud-active-status ${activeStatus}`} style={{position:'relative', bottom:0, outline:'none',borderRadius:'50%'}}><div className={`udas-icon ${activeStatus}`} style={{position:'relative'}}></div></div>
+              
               <p style={{fontSize:'14px'}}>Invisible</p>
             </div>
             <div className="udui-arrow-icon">
-              <button style={{cursor:'pointer'}}>&gt;</button>
+              <p style={{cursor:'pointer'}}>&gt;</p>
             </div>
           </button>
 
           <div onMouseEnter={() => setActiveStatusDisplay(true)} onMouseLeave={() => setActiveStatusDisplay(false)} style={{display:`${activeStatusDisplay ? 'block' : 'none'}`}} className="activeStatusContainer">
             <div className="asc-main">
 
-              <button className="ascm-on-btn">
+              <button onClick={() => setActiveStatus('online')} className="ascm-on-btn">
                 <div className="st-online"></div>
                 <p>Online</p>
               </button>
 
               <div className="ascm-line" style={{backgroundColor:"#adadad82", width:'100%', height:'1px',margin:"10px 0"}}></div>
       
-              <button className='ascm-idle-btn'>
+              <button className='ascm-idle-btn' onClick={() => setActiveStatus('idle')}>
                 <div className="st-idle"><div className="sti-idle"></div></div>
                 <p>Idle</p>
               </button>
 
-              <button className='ascm-dnd'>
-                
+              <button className='ascm-dnd' onClick={() => setActiveStatus('dnd')}>
+                <div className="ascm-dnd-btn-info">
+                  <div className="st-dnd"><div className="stdnd-dnd"></div></div>
+                  <p>Do Not Disturb</p>
+                </div>
+                <p>You will not receive any desktop notifications.</p>
+              </button>
+
+              <button className='ascm-invisible' onClick={() => setActiveStatus('invisible')}>
+                <div className="ascm-inv-btn-info">
+                  <div className="st-inv"><div className="stinv-inv"></div></div>
+                  <p>Invisible</p>
+                </div>
+                <p>You will not appear online, but will have full access to all of Discord.</p>
               </button>
             </div>
           </div>

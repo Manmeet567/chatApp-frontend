@@ -1,9 +1,11 @@
 import { useAuthContext } from "./useAuthContext";
 import { useServersContext } from './useServersContext'
+import { useUserContext } from "./useUserContext";
 
 export const useLogout = () => {
     const {dispatch} = useAuthContext()
     const {dispatch: serversDispatch } = useServersContext()
+    const {dispatch: userDispatch} = useUserContext()
 
     const logout = () => {
         localStorage.removeItem('user')
@@ -11,6 +13,7 @@ export const useLogout = () => {
         // dispatch logout action
         dispatch({type:'LOGOUT'})
         serversDispatch({type:'GET_SERVER_LIST', payload:null})
+        userDispatch({type:'SET_CURRENT_USER', payload:null})
     }
 
     return {logout}

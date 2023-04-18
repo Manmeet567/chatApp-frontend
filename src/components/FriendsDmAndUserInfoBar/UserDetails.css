@@ -84,7 +84,7 @@
     border-radius: 50%;
     width: 16px;
     background-color: #232428;
-    border: 4px solid rgba(183, 221, 255, 0.461);
+    border: 4px solid #b7ddff76;
 }
 
 
@@ -220,18 +220,23 @@
 .activeStatusContainer{
     position: absolute;
     width: 350px;
-    height: 216px;
+    height: 235px;
     background-color: transparent;
     z-index: 5;
-    transform: translate(270px, -60px);
+    transform: translate(270px, -50px);
     padding: 0 20px;
-    border-radius: 8px;
+    border-radius: 5px;
 }
+
+.activeStatusContainer button{
+    cursor: pointer;
+}
+
 .asc-main{
     width: 100%;
     background-color: #111214;
     height: 100%;
-    border-radius: 8px;
+    border-radius: 5px;
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -289,4 +294,85 @@
 }
 .ascm-idle-btn:hover .st-idle{
     background-color: #fff;
+}
+
+.ascm-dnd{
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #fff;
+}
+.ascm-dnd-btn-info{
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+.ascm-dnd>p{
+    font-size: 10px;
+    margin-left: 7px;
+    color: #ffffff9c;
+}
+.ascm-dnd:hover, .ascm-dnd:hover .stdnd-dnd{
+    background-color: #5865f2;
+}
+.ascm-dnd:hover .st-dnd{
+    background-color: #fff;
+}
+.st-dnd{
+    margin-right: 10px;
+    height: 14px;
+    width: 14px;
+    background-color: #f23f43;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.stdnd-dnd{
+    width: 10px;
+    height: 4px;
+    background-color:#111214;
+    border-radius: 8px;
+}
+
+.ascm-invisible{
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #fff;
+}
+.ascm-invisible:hover, .ascm-invisible:hover .stinv-inv{
+    background-color: #5865f2;
+}
+.ascm-invisible:hover .st-inv{
+    background-color: #fff;
+}
+.ascm-inv-btn-info{
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+.st-inv{
+    width: 14px;
+    margin-right: 10px;
+    height: 14px;
+    background-color: #b7ddff76;
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    justify-content: center;
+}
+.stinv-inv{
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #111214;
+}
+.ascm-invisible>p{
+    font-size: 10px;
+    text-align: left;
+    margin-left:25px;
+    color: #ffffff9c;
 }

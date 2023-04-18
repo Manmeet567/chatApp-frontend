@@ -7,7 +7,8 @@ export const useLogin = () => {
 
     const {dispatch} = useAuthContext()
 
-    const login  = async (email,password,rememberMe ) => {
+
+    const login  = async (email,password,rememberMe) => {
         setLoading(true)
         setError(null)
 
@@ -33,6 +34,7 @@ export const useLogin = () => {
             // update the auth context
             dispatch({type:'LOGIN', payload:json})
             setLoading(false)
+            
         }
     }
 
