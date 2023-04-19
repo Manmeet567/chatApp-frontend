@@ -7,7 +7,7 @@ function FriendProfile({activeItem, setActiveItem, friend}) {
   return (
     <button onClick={() => setActiveItem('id')} className={`friendProfile ${activeItem === 'id' ? 'active' : ''}`}>
         <div className="userProfile">
-            {friend.avatar ===null ? <img src="https://www.svgviewer.dev/static-svgs/34446/discord-v2.svg" alt=":)" /> : <img src={Hiro} alt=":)" />}
+            {friend.avatar === null ? <img src="https://www.svgviewer.dev/static-svgs/34446/discord-v2.svg" alt=":)" /> : <img src={Hiro} alt=":)" />}
         </div>
 
         <div className="userInfo">

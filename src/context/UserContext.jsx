@@ -14,6 +14,16 @@ export const userReducer = (state,action) => {
                 friends:action.payload
             }
         
+        case 'PENDING':
+            return {
+                pending:action.payload
+            }
+
+        case 'BLOCKED':
+            return {
+                blocked:action.payload
+            }
+        
         default: return state;
     }
 }

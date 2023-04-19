@@ -44,8 +44,46 @@ function UserDetails({displayOption, user,activeStatus, setActiveStatus}) {
   const { dispatch } = useAuthContext();
   const token = user.token;
 
-  useEffect(() => {
 
+  // useEffect(() => {
+
+  //   const updateStatus = async () => {
+  //     try{
+
+  //       const response = await fetch('http://localhost:4000/api/userProfile/updateStatus',{
+  //         method:'PATCH',
+  //         headers:{
+  //           'Content-Type':'application/json',
+  //           'authorization' : `Bearer ${token}`
+  //         },
+  //         body: JSON.stringify({ status:activeStatus })
+  //       });
+
+  //       const data = await response.json();
+  //       let updateduser = {
+  //         user:data.updatedUserStatus,
+  //         token:token
+  //       }
+      
+  //       localStorage.setItem('user', JSON.stringify(updateduser));
+  //       dispatch({type:'UPDATE_USER', payload:updateduser})
+        
+  //     }
+  //     catch(error){
+  //       console.log(error);
+  //     }
+  //   }
+  //   if(user){
+  //     updateStatus()
+  //   }
+
+  // },[activeStatus])
+
+
+  const prevActiveStatusRef = useRef();
+
+  useEffect(() => {
+  if (prevActiveStatusRef.current !== activeStatus) {
     const updateStatus = async () => {
       try{
 
@@ -66,16 +104,18 @@ function UserDetails({displayOption, user,activeStatus, setActiveStatus}) {
       
         localStorage.setItem('user', JSON.stringify(updateduser));
         dispatch({type:'UPDATE_USER', payload:updateduser})
-
         
       }
       catch(error){
         console.log(error);
       }
-    }
-    updateStatus()
+    };
 
-  },[activeStatus])
+    updateStatus();
+    prevActiveStatusRef.current = activeStatus;
+  }
+}, [activeStatus]);
+
 
   return (
     <div className="user-details" style={displayOption === true ? {display:"block"} : {display:"none"}}>

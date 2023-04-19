@@ -7,7 +7,6 @@ import PendingWumpus from '../../assets/pendingWumpus.svg'
 import BlockedWumpus from '../../assets/blockedWumpus.svg'
 import FriendlyWumpus from '../../assets/friendWumpus.svg'
 import { useUserContext } from '../../hooks/useUserContext';
-import { useAuthContext } from '../../hooks/useAuthContext';
 
 function FmpMainSection({activeNavItem}) {
 
@@ -81,7 +80,9 @@ function FmpMainSection({activeNavItem}) {
   return true;
 }
 
-  const {user} = useAuthContext()
+  const {pending} = useUserContext()
+
+  const {blocked} = useUserContext()
   
 
   function sendFriendRequest(username,userId) {
