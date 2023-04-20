@@ -126,7 +126,7 @@ function UserDetails({displayOption, user,activeStatus, setActiveStatus}) {
       </div>
 
       <div className="ud-avatar">
-        <img className='ud-avatar-img' src={user.user.avatar === null ? "https://www.svgviewer.dev/static-svgs/34446/discord-v2.svg" : {Hiro}} alt=":)" />
+        <img className='ud-avatar-img' src={user.user.avatar === null ? "https://www.svgviewer.dev/static-svgs/34446/discord-v2.svg" : user.user.avatar} alt=":)" />
         <div className={`ud-active-status ${activeStatus}`}><div className={`udas-icon ${activeStatus}`}></div></div>
       </div>
 

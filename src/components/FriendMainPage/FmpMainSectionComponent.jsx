@@ -7,7 +7,6 @@ import {GoSearch} from 'react-icons/go'
 import { useState,useEffect } from 'react';
 import './FmpMainSection.css'
 import {BsChatSquareFill, BsThreeDotsVertical} from 'react-icons/bs';
-import {SlOptionsVertical} from 'react-icons/sl'
 
 function FmpMainSectionComponent({activeNavItem, setActiveNavItem ,displayOption}) {
 
@@ -49,7 +48,9 @@ function FmpMainSectionComponent({activeNavItem, setActiveNavItem ,displayOption
           <div className="fms-friend-list">
               <div className="fms-friend-info-main">
                   {friends.length == 0 && <div className='fms-friend-info'><img src={FriendlyWumpus} alt=";" />
-                  <p style={{userSelect:'none',marginTop:'20px'}}>Wumpus is waiting on friends. You don't have to though!</p></div>}
+                  <p style={{userSelect:'none',marginTop:'20px'}}>Wumpus is waiting on friends. You don't have to though!</p>
+                    <button onClick={() => setActiveNavItem('addFriend')} style={{cursor:'pointer', padding:'7px 13px', color:'#fff', backgroundColor:'#5865f2', borderRadius:'5px', marginTop:'20px'}}>Add Friend</button>
+                  </div>}
 
                   {friends.length!= 0 && <div className='friendsFound'>
                         {friends.map((friend) => {

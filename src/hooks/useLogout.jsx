@@ -14,6 +14,9 @@ export const useLogout = () => {
         dispatch({type:'LOGOUT'})
         serversDispatch({type:'GET_SERVER_LIST', payload:null})
         userDispatch({type:'SET_CURRENT_USER', payload:null})
+        userDispatch({type:'FRIENDS', payload:null})
+        userDispatch({type:'PENDING', payload:null})
+        userDispatch({type:'BLOCKED', payload:null})
     }
 
     return {logout}
