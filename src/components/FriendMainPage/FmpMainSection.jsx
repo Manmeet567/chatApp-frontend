@@ -80,9 +80,7 @@ function FmpMainSection({activeNavItem}) {
   return true;
 }
 
-  const {pending} = useUserContext()
-
-  const {blocked} = useUserContext()
+  const {friends,pending,blocked} = useUserContext()
   
 
   function sendFriendRequest(username,userId) {

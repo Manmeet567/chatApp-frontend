@@ -6,21 +6,25 @@ export const userReducer = (state,action) => {
     switch(action.type) {
         case 'SET_CURRENT_USER':
             return {
+                ...state,
                 user:action.payload
             };
 
         case 'FRIENDS':
             return {
+                ...state,
                 friends:action.payload
             }
         
         case 'PENDING':
             return {
+                ...state,
                 pending:action.payload
             }
 
         case 'BLOCKED':
             return {
+                ...state,
                 blocked:action.payload
             }
         
@@ -30,7 +34,10 @@ export const userReducer = (state,action) => {
 
 export const UserContextProvider = ({children}) => {
     const [state, dispatch ] = useReducer(userReducer, {
-        user:null
+        user:null,
+        friends:null,
+        pending:null,
+        blocked:null
     })
 
     return (

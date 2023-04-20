@@ -137,7 +137,7 @@ function UserHomePage() {
     fetchData()
   }
 
-    }, [])
+}, [])
 
 
   return (
