@@ -48,29 +48,42 @@
     color: #a4abb6;
 }
 
-.fms-friend-list::-webkit-scrollbar{
-    border-radius: 5px;
-    width: 8px;
-}
-.fms-friend-list::-webkit-scrollbar-track{
-    background-color: #383a3f;
-    border-radius: 5px;
-}
-.fms-friend-list::-webkit-scrollbar-thumb{
-    background-color: #1e1f22;
-    border-radius: 5px;
-}
+
 
 .fms-friend-list{
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden;
     margin-top: 8px;
     padding-bottom: 8px;
     margin-left: 30px;
     margin-right: 20px;
 }
 .fms-friend-info{
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 500px;
+}
+
+.friendsFound{
+    background-color: transparent;
+    height: 550px;
+    border-radius: 8px;
+    background-color: #1e1f222d;
+    overflow: hidden auto;
+}
+.friendsFound::-webkit-scrollbar {
+    border-radius: 8px;
+    width: 8px;
+}
+
+.friendsFound::-webkit-scrollbar-thumb {
+    background-color: #1e1f22;
+    border-radius: 8px;
+}
+.ff-friend{
+    width: 100%;
+    
 }
 
 

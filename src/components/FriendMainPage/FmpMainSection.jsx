@@ -7,8 +7,9 @@ import PendingWumpus from '../../assets/pendingWumpus.svg'
 import BlockedWumpus from '../../assets/blockedWumpus.svg'
 import FriendlyWumpus from '../../assets/friendWumpus.svg'
 import { useUserContext } from '../../hooks/useUserContext';
+import FmpMainSectionComponent from './FmpMainSectionComponent';
 
-function FmpMainSection({activeNavItem}) {
+function FmpMainSection({activeNavItem, setActiveNavItem}) {
 
   const displayOption = [{
     display:'none'
@@ -20,26 +21,6 @@ function FmpMainSection({activeNavItem}) {
     display:'block'
   }
 ]
-
-  const [titleText, setTitleText] = useState('All FRIENDS')
-
-  useEffect(() => {
-     if(activeNavItem === 'all'){
-        setTitleText('All FRIENDS')
-      }
-      else if(activeNavItem === 'online'){
-        setTitleText('ONLINE')
-      }
-      else if(activeNavItem === 'pending'){
-        setTitleText('PENDING')
-      }
-      else if(activeNavItem === 'blocked') {
-        setTitleText('BLOCKED')
-      }
-      else if(activeNavItem === 'addFriend') {
-        setTitleText('ADD FRIEND')
-      }
-  }, [activeNavItem])
 
 
   const [username,setUsername] = useState('')
@@ -80,7 +61,7 @@ function FmpMainSection({activeNavItem}) {
   return true;
 }
 
-  const {friends,pending,blocked} = useUserContext()
+  const {friends} = useUserContext()
   
 
   function sendFriendRequest(username,userId) {
@@ -92,27 +73,27 @@ function FmpMainSection({activeNavItem}) {
 
   return (
     <section className="fms-main-section" style={{userSelect:'none'}}>
-
+        <FmpMainSectionComponent activeNavItem={activeNavItem} setActiveNavItem={setActiveNavItem} displayOption ={displayOption}/>
         {/* Online pending and Blocked friends  when their data is zero*/}
-        <div className="fms-online" style={activeNavItem !== 'addFriend' ? displayOption[2] : displayOption[0]}>
+        {/* <div className="fms-online" style={activeNavItem !== 'addFriend' ? displayOption[2] : displayOption[0]}>
           <div className="fms-no-one-online">
             <img className='fms-img' style={{userSelect:'none'}} src={`${activeNavItem === 'online' ? NoOneOnline : ''}${activeNavItem === 'pending' ? PendingWumpus : ''}${activeNavItem === 'blocked' ? BlockedWumpus : ''}${activeNavItem === 'all' ? FriendlyWumpus : ''}`} alt="No one is Online" />
 
             <p style={{userSelect:'none'}}>{`${activeNavItem === 'online' ? "No one's around to play with Wumpus." : ''}${activeNavItem === 'all' ? "Wumpus is waiting on friends. You don't have to though!" : ''}${activeNavItem === 'pending' ? "There are no pending friend requests. Here's Wumpus for now." : ''}${activeNavItem === 'blocked' ? "You can't unblock the Wumpus." : ''}`}</p>
           </div>
-        </div>
+        </div> */}
 
 
 
         {/* All Friend List */}
-        <div className="fms-all" style={activeNavItem === 'all' ? displayOption[2] : displayOption[0]}>
+        {/* <div className="fms-all" style={activeNavItem === 'all' ? displayOption[2] : displayOption[0]}>
           <div className="fms-search-bar" style={activeNavItem === 'all' ? displayOption[1] : displayOption[0]}>
             <input type="text" placeholder="Search" autoFocus/>
             <button><GoSearch className="fms-search-btn"/></button>
           </div>
 
           <div className="fms-all-friend-text">
-              <p>{titleText} - 0</p>
+              <p>{titleText} - {friends.length}</p>
           </div>
 
           <div className="fms-friend-list">
@@ -120,7 +101,7 @@ function FmpMainSection({activeNavItem}) {
                   
               </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Add Friend Content */}
         <div className="fms-add-friend" style={activeNavItem === 'addFriend' ? displayOption[2] : displayOption[0]}>

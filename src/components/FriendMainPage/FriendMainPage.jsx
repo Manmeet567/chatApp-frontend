@@ -13,7 +13,7 @@ function FriendMainPage() {
         <FmpNavbar activeItem={navSelectedItem} setActiveItem={setNavSelectedItem}/>
         
         <div className="fmp-main">
-          <FmpMainSection activeNavItem={navSelectedItem}/>
+          <FmpMainSection activeNavItem={navSelectedItem} setActiveNavItem = {setNavSelectedItem}/>
 
           <FmpRightSection />
         </div>
