@@ -87,6 +87,7 @@
     align-items: center;
     justify-content: space-between;
     border-radius: 5px;
+    cursor: pointer;
 }
 .fffinsn-span{
     display: none;
@@ -112,11 +113,12 @@
     align-items: center;
 }
 .fffi-pic > img{
-    min-height: 32px;
-    min-width: 32px;
-    max-width: 32px;
-    max-width: 32px;
+    min-height: 34px;
+    min-width: 34px;
+    max-width: 34px;
+    max-width: 34px;
     margin-left: 10px;
+    border-radius: 50%;
 }
 
 .fff-icons{
@@ -137,8 +139,49 @@
     justify-content: center;
 }
 
+.fffa-outer{
+    position: fixed;
+    height: 10px;
+    width: 10px;
+    /* #313338 */
+    outline: 3.5px solid #313338;
+    border-radius: 50%;
+    transform: translate(34px, -15px);
+}
 
+.online{
+    background-color:#32ae5f;
+}
+.fffa-inner.invisible{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid #7b8792;
+    background-color: #313338;
+}
+.fffa-outer.dnd{
+    background-color: #f23f43;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fffa-inner.dnd{
+    height: 3px;
+    width: 7px;
+    background-color: #313338;
+    border-radius: 5px;
+    margin-top: 0.5px;
+}
 
+.fffa-outer.idle{
+    background-color: #f0b232;
+}
+.fffa-inner.idle{
+    background-color: #313338;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
 
 /* add Friend Box styles */
 .fms-search-friend{

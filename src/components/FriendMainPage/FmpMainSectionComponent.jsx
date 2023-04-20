@@ -57,7 +57,11 @@ function FmpMainSectionComponent({activeNavItem, setActiveNavItem ,displayOption
                             <div className="ff-friend">
                                 <div className="fff-info">
                                     <div className="fffi-pic">
-                                        {friend.avatar === null ? <img src="https://www.svgviewer.dev/static-svgs/34446/discord-v2.svg" alt=":)" /> : <img src={Hiro} alt=":)" />}
+                                        {friend.avatar === null ? <img src="https://www.svgviewer.dev/static-svgs/34446/discord-v2.svg" alt=":)" /> : <img src={friend.avatar} alt=":)" />}
+                                        <div className="fff-activestatus">
+                                            <div className={`fffa-outer ${friend.status}`}><div className={`fffa-inner ${friend.status}`}></div></div>
+                                        </div>
+
                                     </div>
                                     <div className="fffi-name-status">
                                         <div className="fffins-name">

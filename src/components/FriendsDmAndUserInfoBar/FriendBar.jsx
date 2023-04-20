@@ -109,7 +109,7 @@ function FriendBar() {
 
             <button ref={userDetailButtonRef} onClick={() => setUserDetailDisplay(prev => !prev)} className="user-info">
               
-              {currentUser.avatar ===null ? <img src="https://www.svgviewer.dev/static-svgs/34446/discord-v2.svg" alt=":)" /> : <img src={Hiro} alt=":)" />}
+              {currentUser.avatar ===null ? <img src="https://www.svgviewer.dev/static-svgs/34446/discord-v2.svg" alt=":)" /> : <img src={currentUser.avatar} alt=":)" />}
 
               <div className="ud-active-status" style={activeStatusStyles.udActiveStatus[`for${activeStatus}`]}><div className="udas-icon" style={activeStatusStyles.udasIcon[`for${activeStatus}`]}></div></div>
 
