@@ -2,9 +2,9 @@ import './UserDetails.css'
 import {MdOutlineFileCopy} from 'react-icons/md'
 import {RiPencilFill} from 'react-icons/ri'
 import {FaSmile} from 'react-icons/fa'
-import Hiro from '../../assets/Hiro.jpg'
 import {useRef, useState, useEffect} from 'react'
 import { useAuthContext } from '../../hooks/useAuthContext';
+import UserProfileModal from './UserProfileModal'
 
 
 function UserDetails({displayOption, user,activeStatus, setActiveStatus}) {
@@ -45,41 +45,6 @@ function UserDetails({displayOption, user,activeStatus, setActiveStatus}) {
   const token = user.token;
 
 
-  // useEffect(() => {
-
-  //   const updateStatus = async () => {
-  //     try{
-
-  //       const response = await fetch('http://localhost:4000/api/userProfile/updateStatus',{
-  //         method:'PATCH',
-  //         headers:{
-  //           'Content-Type':'application/json',
-  //           'authorization' : `Bearer ${token}`
-  //         },
-  //         body: JSON.stringify({ status:activeStatus })
-  //       });
-
-  //       const data = await response.json();
-  //       let updateduser = {
-  //         user:data.updatedUserStatus,
-  //         token:token
-  //       }
-      
-  //       localStorage.setItem('user', JSON.stringify(updateduser));
-  //       dispatch({type:'UPDATE_USER', payload:updateduser})
-        
-  //     }
-  //     catch(error){
-  //       console.log(error);
-  //     }
-  //   }
-  //   if(user){
-  //     updateStatus()
-  //   }
-
-  // },[activeStatus])
-
-
   const prevActiveStatusRef = useRef();
 
   useEffect(() => {
@@ -116,6 +81,14 @@ function UserDetails({displayOption, user,activeStatus, setActiveStatus}) {
   }
 }, [activeStatus]);
 
+  const [open,setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(true)
+  }
+  const handleClose = () => {
+    setOpen(false)
+  }
+
 
   return (
     <div className="user-details" style={displayOption === true ? {display:"block"} : {display:"none"}}>
@@ -127,8 +100,11 @@ function UserDetails({displayOption, user,activeStatus, setActiveStatus}) {
 
       <div className="ud-avatar">
         <img className='ud-avatar-img' src={user.user.avatar === null ? "https://www.svgviewer.dev/static-svgs/34446/discord-v2.svg" : user.user.avatar} alt=":)" />
+        <div className="uda-hover-btn" onClick={handleOpen}>VIEW PROFILE</div>
         <div className={`ud-active-status ${activeStatus}`}><div className={`udas-icon ${activeStatus}`}></div></div>
       </div>
+
+      <UserProfileModal handleClose={handleClose} open={open} TopBg={udTopBg}/>
 
       <div className="ud-user-info">
         <div className="udui-username" ref={divRef} onClick={copyText}>

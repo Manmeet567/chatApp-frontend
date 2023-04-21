@@ -44,6 +44,30 @@
     border-radius: 50%;
     width: 88px;
 }
+
+.ud-avatar:hover .uda-hover-btn{
+    display: flex;
+}
+
+.uda-hover-btn{
+    position: fixed;
+    width: 74px;
+    height: 74px;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.553);
+    transform: translate(7px, -87px);
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+    transition: .1s linear;
+    display: none;
+}
+
 .ud-active-status{
     position: fixed;
     right: 5px;

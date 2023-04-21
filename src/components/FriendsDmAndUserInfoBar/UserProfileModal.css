@@ -1,0 +1,41 @@
+.up-modal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.upm-box{
+    user-select: none;
+    width: 640px;
+    height: 570px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #313338;
+}
+
+.avatar{
+    position: fixed;
+    border: 13px solid #313338;
+    border-radius: 50%;
+    transform: translate(40px, 15px);
+}
+.avatar > img{
+    border-radius: 50%;
+    min-height: 150px;
+    min-width: 150px;
+    max-width: 150px;
+    max-height: 150px;
+}
+.upm-infoBox{
+    height: 350px;
+    width: 600px;
+    margin:80px auto 0;
+    border-radius: 10px;
+    background-color: #111214;
+    padding: 12px;
+    line-height: 1;
+    color: #fff;
+}
+.upmi-username{
+    display: flex;
+    align-items: center;
+}
