@@ -55,7 +55,7 @@ function FmpMainSectionComponent({activeNavItem, setActiveNavItem ,displayOption
                   {friends.length!= 0 && <div className='friendsFound'>
                         {friends.map((friend) => {
                             return (
-                            <div className="ff-friend">
+                            <div key={friend._id} className="ff-friend">
                                 <div className="fff-info">
                                     <div className="fffi-pic">
                                         {friend.avatar === null ? <img src="https://www.svgviewer.dev/static-svgs/34446/discord-v2.svg" alt=":)" /> : <img src={friend.avatar} alt=":)" />}
@@ -80,8 +80,14 @@ function FmpMainSectionComponent({activeNavItem, setActiveNavItem ,displayOption
                                 </div>
 
                                 <div className="fff-icons">
-                                        <div className="fffii-icon"><BsChatSquareFill style={{marginTop:'2px'}}/></div>
-                                        <div className="fffii-icon"><BsThreeDotsVertical /></div>
+                                        <div className="fffii-icon">
+                                          <BsChatSquareFill style={{marginTop:'2px'}}/>
+                                          <div className="fffiii-text">Message</div>
+                                        </div>
+                                        <div className="fffii-icon">
+                                          <BsThreeDotsVertical style={{marginLeft:'0.5px'}}/>
+                                          <div className="fffiii-more">More</div>
+                                        </div>
                                 </div>
                             </div>
                             )

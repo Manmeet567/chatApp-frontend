@@ -183,6 +183,55 @@
     border-radius: 50%;
 }
 
+.fffiii-text{
+    position: fixed;
+    white-space: nowrap;
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 8px;
+    background-color: #1e1f22;
+    border-radius: 5px;
+    transform: translateY(-40px);
+    display: none;
+}
+.fffiii-text::before{
+    content: '';
+    position: fixed;
+    height: 8px;
+    width: 8px;
+    transform: translate(23px, 18px) rotate(45deg);
+    background-color: #1e1f22;
+}
+
+.fffii-icon:hover .fffiii-text{
+    display: block;
+}
+
+.fffiii-more{
+    position: fixed;
+        white-space: nowrap;
+        color: #fff;
+        font-size: 12px;
+        padding: 4px 8px;
+        background-color: #1e1f22;
+        border-radius: 5px;
+        transform: translateY(-40px);
+        display: none;
+}
+.fffiii-more::before{
+    content: '';
+        position: fixed;
+        height: 8px;
+        width: 8px;
+        transform: translate(11px, 18px) rotate(45deg);
+        background-color: #1e1f22;
+}
+.fffii-icon:hover .fffiii-more{
+    display: block;
+}
+
+
+
 /* add Friend Box styles */
 .fms-search-friend{
     margin: 16px 20px 8px 30px;
