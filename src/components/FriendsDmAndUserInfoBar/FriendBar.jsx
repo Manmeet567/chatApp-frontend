@@ -10,6 +10,7 @@ import { useState, useEffect,useRef } from 'react'
 import UserDetails from './UserDetails'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { useUserContext } from '../../hooks/useUserContext'
+import Zoom from '@mui/material/Zoom';
 
 
 
@@ -59,6 +60,7 @@ function FriendBar() {
 
   // friend profile stuff
   const {friends} = useUserContext();
+  const [isHovered,setIsHovered] = useState(false)
 
   return (
     <div className="friendsBar" style={{userSelect:'none'}}>

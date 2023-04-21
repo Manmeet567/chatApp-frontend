@@ -36,6 +36,7 @@
     position: fixed;
     border-radius: 50%;
     transform: translate(20px,-50px);
+    background-color: #232428;
 }
 
 .ud-avatar-img{
