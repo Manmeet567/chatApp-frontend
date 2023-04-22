@@ -1,0 +1,42 @@
+.user-settings{
+    position: fixed;
+    height: 100px;
+    width: 150px;
+    bottom: 53px;
+    border-radius: 5px;
+    transform: translateX(130px);
+    background-color:#1e1f22;
+    z-index: 1000;
+    animation-name: settingsAnime;
+    animation-duration: .1s;
+    overflow: hidden;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+@keyframes settingsAnime {
+    0%{
+        bottom: 0;
+    }
+    100%{
+        bottom: 53px;
+    }
+}
+
+.us-btn{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    white-space: nowrap;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 13px;
+    border-radius: 5px;
+    background-color: #5865f2c1;
+    color: #fff;
+}
+.us-btn:hover{
+    background-color:#5865f2;
+}

@@ -26,64 +26,6 @@ function UserHomePage() {
 
     useEffect(() => {
 
-        // const fetchFriends = async () => {
-        //     const response = await fetch('http://localhost:4000/api/userProfile/friends', {
-        //         method:'POST',
-        //         headers:{
-        //         'Content-Type':'application/json',
-        //         'authorization' : `Bearer ${user.token}`
-        //         },
-        //         body: JSON.stringify({friends})
-        //     })
-
-        //     const data = await response.json()
-        //     if(response.ok){
-        //         dispatch({type:'FRIENDS', payload:data})
-        //     }
-        // }
-
-
-        // const fetchPending = async () => {
-        //     const response = await fetch('http://localhost:4000/api/userProfile/pending', {
-        //         method:'POST',
-        //         headers:{
-        //             'Content-Type':'application/json',
-        //             'authorization' : `Bearer ${user.token}`
-        //         },
-        //         body: JSON.stringify({pending})
-        //     })
-
-        //     const data = await response.json()
-    
-        //     if(response.ok){
-        //         dispatch({type:'PENDING', payload:data})
-        //     }
-        // }
-
-        // const fetchBlocked = async () => {
-        //     const response = await fetch('http://localhost:4000/api/userProfile/blocked', {
-        //         method:'POST',
-        //         headers:{
-        //             'Content-Type':'application/json',
-        //             'authorization' : `Bearer ${user.token}`
-        //         },
-        //         body: JSON.stringify({blocked})
-        //     })
-
-        //     const data = await response.json()
-    
-        //     if(response.ok){
-        //         dispatch({type:'BLOCKED', payload:data})
-        //     }
-        // }
-
-
-        // if(user){
-        //     fetchFriends()
-        //     fetchPending()
-        //     fetchBlocked()
-        // }
-
         const fetchData = async () => {
     try {
       const [friendsResponse, pendingResponse, blockedResponse] = await Promise.all([
@@ -144,7 +86,7 @@ function UserHomePage() {
         <div className="userHomePage">
             <ServerListSidebar />
             <FriendBar />
-            <button onClick={handleLogout}>Logout</button>
+            {/* <button onClick={handleLogout}>Logout</button> */}
   
 
             <FriendMainPage />

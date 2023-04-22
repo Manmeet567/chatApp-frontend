@@ -10,7 +10,8 @@ import { useState, useEffect,useRef } from 'react'
 import UserDetails from './UserDetails'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { useUserContext } from '../../hooks/useUserContext'
-import Zoom from '@mui/material/Zoom';
+import { Zoom } from '@mui/material'
+import UserSettings from './UserSettings'
 
 
 
@@ -60,7 +61,7 @@ function FriendBar() {
 
   // friend profile stuff
   const {friends} = useUserContext();
-  const [isHovered,setIsHovered] = useState(false)
+  const [userSettings, setUserSettings] = useState(false)
 
   return (
     <div className="friendsBar" style={{userSelect:'none'}}>
@@ -125,13 +126,13 @@ function FriendBar() {
             </div>
       
 
-            <button className="user-settings-btn">
+            <button onClick={() => setUserSettings(prev => !prev)} className="user-settings-btn">
               <IoSettingsSharp className='settings-btn'/>
               <div className="btn-info">
                 User Settings
               </div>
             </button>
-
+          <UserSettings userSettings = {userSettings}/>
 
           </div>
 
