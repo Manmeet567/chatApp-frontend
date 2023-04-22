@@ -3,6 +3,7 @@ import { Home,Login,Signup,UserHomePage } from './pages'
 import { useAuthContext } from './hooks/useAuthContext'
 import './App.css'
 import { useUserContext } from './hooks/useUserContext'
+import Settings from './pages/Settings/Settings'
 
 function App() {
 
@@ -18,6 +19,8 @@ function App() {
             <Route path='/' element={user? <Navigate to='/channels/@me'/> : <Home/>} />
 
             <Route path='/channels/@me' element={user ? <UserHomePage /> : <Navigate to='/' />} />
+
+            <Route path='/channels/@me/settings' element={user ? <Settings /> : <Navigate to='/'/>} />
 
             <Route path='/login' element={!user ? <Login/> : <Navigate to='/channels/@me' />} />
 
