@@ -1,25 +1,25 @@
 .settings-page{
     height: 100vh;
     width: 100%;
+    background-color: #313338;
     overflow: hidden;
+}
+.sp-title{
+    top: 0;
+    width: 600px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    color: #fff;
+    margin: 0 auto;
+}
+.esc-btn{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background-color: #3f4248;
+    color: #aeb3ba;
+    cursor:pointer;
 }
-.sp-title{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 600px;
-    padding: 20px 0;
-    color: #fff;
-    user-select: none;
-}
-.sp-options{
-    width: 600px;
-    height: 500px;
-    background-color: #313338;
-    border-radius: 10px;
+.sp-profile-settings{
+    
 }
