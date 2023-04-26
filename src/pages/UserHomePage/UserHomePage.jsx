@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLogout } from '../../hooks/useLogout'
 import ServerListSidebar from '../../components/ServerListSidebar/ServerListSidebar'
 import './UserHomePage.css'
@@ -6,6 +6,7 @@ import FriendBar from '../../components/FriendsDmAndUserInfoBar/FriendBar'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import FriendMainPage from '../../components/FriendMainPage/FriendMainPage'
 import { useUserContext } from '../../hooks/useUserContext'
+import {io} from 'socket.io-client'
 
 
 function UserHomePage() {
@@ -80,6 +81,21 @@ function UserHomePage() {
   }
 
 }, [])
+
+  // socket 
+  const [socket, setSocket] = useState(null)
+
+  useEffect(() => {
+    setSocket(io('ws://localhost:8900'))
+  }, [])
+
+  useEffect(() => {
+    
+    socket?.on('hello', message => {
+      console.log(message)
+    })
+  },[socket])
+  
 
 
   return (

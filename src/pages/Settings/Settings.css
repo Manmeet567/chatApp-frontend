@@ -12,6 +12,8 @@
     padding: 20px 0;
     color: #fff;
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
 }
 .esc-btn{
     display: flex;
@@ -19,7 +21,51 @@
     align-items: center;
     color: #aeb3ba;
     cursor:pointer;
+    transition: .1s linear;
+}
+.esc-btn:hover{
+    color: #fff;
 }
 .sp-profile-settings{
-    
+    width: 600px;
+    height: calc(100vh - 120px);
+    margin: 0 auto;
+    overflow: hidden scroll;
+    padding-left: 8px;
+    padding-right: 6px;
+}
+.sp-profile-settings::-webkit-scrollbar{
+    background-color: #313338;
+    width: 8px;
+}
+.sp-profile-settings::-webkit-scrollbar-thumb{
+    background-color: #111214;
+    border-radius: 10px;
+}
+.sps-profile{
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px 0;
+    height: 700px;
+}
+.top-banner{
+    width: 100%;
+    height: 100px;
+    background-color: #111214;
+}
+.sp-img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 8px solid #28292e;
+    position: absolute;
+    transform: translate(40px, 30px);
+
+}
+.sp-img>img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
 }

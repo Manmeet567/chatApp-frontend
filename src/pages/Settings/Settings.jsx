@@ -2,9 +2,11 @@ import './Settings.css'
 import { RxCross2 } from 'react-icons/rx'
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 function Settings() {
 
+    const {user} = useAuthContext();
     const navigate = useNavigate();
 
     const handleClose = () => {
@@ -36,7 +38,16 @@ function Settings() {
       </div>
 
       <div className="sp-profile-settings">
-        
+
+        <div className="sps-profile">
+          <div className="top-banner">
+            <div className="sp-img">
+              <img src={user.user.avatar === null ? 'https://www.svgviewer.dev/static-svgs/34446/discord-v2.svg' : user.user.avatar} alt="loading..." />
+            </div>
+          </div>
+        </div>
+
+
       </div>
     </div>
   )
