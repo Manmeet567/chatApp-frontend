@@ -10,7 +10,6 @@ import { useState, useEffect,useRef } from 'react'
 import UserDetails from './UserDetails'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { useUserContext } from '../../hooks/useUserContext'
-import { Zoom } from '@mui/material'
 import UserSettings from './UserSettings'
 
 

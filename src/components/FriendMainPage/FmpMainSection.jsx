@@ -1,12 +1,8 @@
-import { useEffect,useState } from 'react'
+import { useState } from 'react'
 import './FmpMainSection.css'
-import {GoSearch} from 'react-icons/go'
-import NoOneOnline from '../../assets/noOneIsOnline.svg'
 import WaitingWumpus from '../../assets/waitingForFriends.svg';
-import PendingWumpus from '../../assets/pendingWumpus.svg'
-import BlockedWumpus from '../../assets/blockedWumpus.svg'
-import FriendlyWumpus from '../../assets/friendWumpus.svg'
 import { useUserContext } from '../../hooks/useUserContext';
+import { useAuthContext } from '../../hooks/useAuthContext';
 import FmpMainSectionComponent from './FmpMainSectionComponent';
 
 function FmpMainSection({activeNavItem, setActiveNavItem}) {
@@ -26,27 +22,32 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
   const [username,setUsername] = useState('')
   const [userId, setUserId] = useState('')
   const [friendRequestError, setFriendRequestError] = useState(null);
+  const [friendRequestSent, setFriendRequestSent] = useState(null);
 
   function validateInput(username, userId) {
   // check if username is empty
   if (!username) {
+    setFriendRequestSent(null)
     setFriendRequestError('Username is required')
     return false;
   }
   
   // check if userId is exactly 5 characters
   if(!userId){
+    setFriendRequestSent(null)
     setFriendRequestError('User Id is required')
     return false;
   }
 
   if (userId.length !== 5) {
+    setFriendRequestSent(null)
     setFriendRequestError('4 digit Id required')
     return false;
   }
   
   // check if first character is '#'
   if (userId[0] !== '#') {
+    setFriendRequestSent(null)
     setFriendRequestError("First character of User's Id should be '#'")
     return false;
   }
@@ -56,17 +57,79 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
     setFriendRequestError('Please enter a valid user ID, Only numbers are allowed in User ID')
     return false;
   }
-  setFriendRequestError('')
+  setFriendRequestError(null)
   // if all checks pass, return true
   return true;
 }
 
   const {friends} = useUserContext()
-  
+  const {user} = useAuthContext()
+
+  const alreadyAFriendOrNot = (id, friends) => {
+    // Loop through the friends array to check if userId exists in the array
+    for (let i = 0; i < friends.length; i++) {
+    // If the uniqueUsername of the current friend object matches the userId, return true
+      if (friends[i].uniqueUsername === id) {
+        return true;
+      }
+    }
+    // If userId is not found in the friends array, return false
+    return false;
+  }
+
 
   function sendFriendRequest(username,userId) {
+
+    const sendRequest = async (id) => {
+      try{
+        const response = await fetch('http://localhost:4000/api/userProfile/sendFriendRequest',{
+          method:'POST',
+          headers:{
+            'Content-Type':'application/json',
+            'authorization' : `Bearer ${user.token}`
+          },
+          body: JSON.stringify({uniqueUsername:id})
+        });
+
+        const data = await response.json()
+        console.log(data)
+        if(response.ok){
+          if(!data.sent){
+            setFriendRequestSent(null);
+            setFriendRequestError(data.message);
+          }
+          if(data.sent){
+            setFriendRequestError(null);
+            setFriendRequestSent(data.message);
+          }
+        }
+        if(!response.ok){
+          setFriendRequestError(data.error)
+          setFriendRequestSent(null)
+        }
+
+      }
+      catch(error){
+        console.log(error);
+      }
+    }
+
     if(validateInput(username,userId)){
-      console.log(username+userId)
+      let id = username+userId;
+      const friendExists = alreadyAFriendOrNot(id,friends)
+      if(user.user.uniqueUsername !== id){
+        if(!friendExists){
+          sendRequest(id)
+        }
+        else{
+          setFriendRequestSent(null)
+          setFriendRequestError(`${id} is already a Friend.`)
+        }
+      }
+      else{
+        setFriendRequestSent(null)
+        setFriendRequestError("Whoops!! You can't send friend request to yourself.")
+      }
     }
   }
 
@@ -74,34 +137,7 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
   return (
     <section className="fms-main-section" style={{userSelect:'none'}}>
         <FmpMainSectionComponent activeNavItem={activeNavItem} setActiveNavItem={setActiveNavItem} displayOption ={displayOption}/>
-        {/* Online pending and Blocked friends  when their data is zero*/}
-        {/* <div className="fms-online" style={activeNavItem !== 'addFriend' ? displayOption[2] : displayOption[0]}>
-          <div className="fms-no-one-online">
-            <img className='fms-img' style={{userSelect:'none'}} src={`${activeNavItem === 'online' ? NoOneOnline : ''}${activeNavItem === 'pending' ? PendingWumpus : ''}${activeNavItem === 'blocked' ? BlockedWumpus : ''}${activeNavItem === 'all' ? FriendlyWumpus : ''}`} alt="No one is Online" />
-
-            <p style={{userSelect:'none'}}>{`${activeNavItem === 'online' ? "No one's around to play with Wumpus." : ''}${activeNavItem === 'all' ? "Wumpus is waiting on friends. You don't have to though!" : ''}${activeNavItem === 'pending' ? "There are no pending friend requests. Here's Wumpus for now." : ''}${activeNavItem === 'blocked' ? "You can't unblock the Wumpus." : ''}`}</p>
-          </div>
-        </div> */}
-
-
-
-        {/* All Friend List */}
-        {/* <div className="fms-all" style={activeNavItem === 'all' ? displayOption[2] : displayOption[0]}>
-          <div className="fms-search-bar" style={activeNavItem === 'all' ? displayOption[1] : displayOption[0]}>
-            <input type="text" placeholder="Search" autoFocus/>
-            <button><GoSearch className="fms-search-btn"/></button>
-          </div>
-
-          <div className="fms-all-friend-text">
-              <p>{titleText} - {friends.length}</p>
-          </div>
-
-          <div className="fms-friend-list">
-              <div className="fms-friend-info">
-                  
-              </div>
-          </div>
-        </div> */}
+        
 
         {/* Add Friend Content */}
         <div className="fms-add-friend" style={activeNavItem === 'addFriend' ? displayOption[2] : displayOption[0]}>
@@ -116,6 +152,7 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
               </div>
               <button style={{marginTop:'25px'}} onClick={() => sendFriendRequest(username, userId)}>Send Friend Request</button>
               <p style={{margin:'15px 0 0', fontSize:'14px', color:'red'}}>{friendRequestError}</p>
+              <p style={{margin:'5px 0 0', fontSize:'14px', color:'#32ae5f'}}>{friendRequestSent}</p>
             </div>
           </div>
           <div className="fmssf-img">
