@@ -62,10 +62,10 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
   return true;
 }
 
-  const {friends} = useUserContext()
+  const {friends, pending, blocked} = useUserContext()
   const {user} = useAuthContext()
 
-  const alreadyAFriendOrNot = (id, friends) => {
+  const alreadyAFriendOrNot = (id, friends, pending, blocked) => {
     // Loop through the friends array to check if userId exists in the array
     for (let i = 0; i < friends.length; i++) {
     // If the uniqueUsername of the current friend object matches the userId, return true
@@ -100,7 +100,7 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
           }
           if(data.sent){
             setFriendRequestError(null);
-            setFriendRequestSent(data.message);
+            setFriendRequestSent(data.sent);
           }
         }
         if(!response.ok){
@@ -116,7 +116,7 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
 
     if(validateInput(username,userId)){
       let id = username+userId;
-      const friendExists = alreadyAFriendOrNot(id,friends)
+      const friendExists = alreadyAFriendOrNot(id,friends, pending, blocked)
       if(user.user.uniqueUsername !== id){
         if(!friendExists){
           sendRequest(id)
@@ -152,7 +152,7 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
               </div>
               <button style={{marginTop:'25px'}} onClick={() => sendFriendRequest(username, userId)}>Send Friend Request</button>
               <p style={{margin:'15px 0 0', fontSize:'14px', color:'red'}}>{friendRequestError}</p>
-              {friendRequestSent && <p style={{margin:'5px 0 0', fontSize:'14px', color:'#32ae5f'}}>Success! Your friend request to <b>{friendRequestSent}</b> was sent.</p>}
+              {friendRequestSent && <p style={{margin:'5px 0 0', fontSize:'14px', color:'#32ae5f'}}>Success! Your friend request to <b>{username+userId}</b> was sent.</p>}
             </div>
           </div>
           <div className="fmssf-img">
