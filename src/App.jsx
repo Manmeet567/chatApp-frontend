@@ -4,12 +4,26 @@ import { useAuthContext } from './hooks/useAuthContext'
 import './App.css'
 import { useUserContext } from './hooks/useUserContext'
 import Settings from './pages/Settings/Settings'
+import { useState, useEffect } from 'react'
+import {io} from 'socket.io-client'
 
 function App() {
 
   const {user} = useAuthContext()
   const {dispatch: friendDispatch} = useUserContext()
   
+  const [socket, setSocket] = useState(null)
+  
+  useEffect(() => {
+    setSocket(io('ws://localhost:8900'))
+  }, [])
+
+  useEffect(() => {
+    socket?.on('hello', message => {
+    console.log('Socket connected:', socket.connected);
+    console.log(message)
+  })
+  },[socket])
 
   return (
       <BrowserRouter>

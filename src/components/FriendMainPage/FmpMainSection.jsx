@@ -152,7 +152,7 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
               </div>
               <button style={{marginTop:'25px'}} onClick={() => sendFriendRequest(username, userId)}>Send Friend Request</button>
               <p style={{margin:'15px 0 0', fontSize:'14px', color:'red'}}>{friendRequestError}</p>
-              <p style={{margin:'5px 0 0', fontSize:'14px', color:'#32ae5f'}}>{friendRequestSent}</p>
+              {friendRequestSent && <p style={{margin:'5px 0 0', fontSize:'14px', color:'#32ae5f'}}>Success! Your friend request to <b>{friendRequestSent}</b> was sent.</p>}
             </div>
           </div>
           <div className="fmssf-img">
