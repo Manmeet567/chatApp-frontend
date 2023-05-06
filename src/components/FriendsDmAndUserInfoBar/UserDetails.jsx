@@ -62,13 +62,9 @@ function UserDetails({displayOption, user,activeStatus, setActiveStatus}) {
         });
 
         const data = await response.json();
-        let updateduser = {
-          user:data.updatedUserStatus,
-          token:token
-        }
-      
-        localStorage.setItem('user', JSON.stringify(updateduser));
-        dispatch({type:'UPDATE_USER', payload:updateduser})
+
+        dispatch({type:'UPDATE_USER', payload:{status:data.updatedUserStatus.status}})
+
         
       }
       catch(error){
