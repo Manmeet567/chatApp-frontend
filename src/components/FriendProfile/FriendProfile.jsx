@@ -1,5 +1,4 @@
 import './FriendProfile.css'
-import tadashi from '../../assets/tadashi.jpg'
 
 function FriendProfile({activeItem, setActiveItem, friend}) {
 
