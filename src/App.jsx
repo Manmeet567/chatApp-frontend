@@ -2,7 +2,6 @@ import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
 import { Home,Login,Signup,UserHomePage } from './pages'
 import { useAuthContext } from './hooks/useAuthContext'
 import './App.css'
-import { useUserContext } from './hooks/useUserContext'
 import Settings from './pages/Settings/Settings'
 import { useState, useEffect } from 'react'
 import {io} from 'socket.io-client'
@@ -10,7 +9,6 @@ import {io} from 'socket.io-client'
 function App() {
 
   const {user} = useAuthContext()
-  const {dispatch: friendDispatch} = useUserContext()
   
   const [socket, setSocket] = useState(null)
   
