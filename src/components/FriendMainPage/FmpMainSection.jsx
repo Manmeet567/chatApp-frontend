@@ -62,18 +62,22 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
   return true;
 }
 
-  const {friends, pending, blocked} = useUserContext()
-  const {user} = useAuthContext()
+  const {friends,pending, dispatch:userDispatch} = useUserContext()
+  const {user, dispatch} = useAuthContext()
 
-  const alreadyAFriendOrNot = (id, friends, pending, blocked) => {
-    // Loop through the friends array to check if userId exists in the array
+  const alreadyAFriendOrNot = (id, friends,pending) => {
     for (let i = 0; i < friends.length; i++) {
-    // If the uniqueUsername of the current friend object matches the userId, return true
       if (friends[i].uniqueUsername === id) {
-        return true;
+        return `${id} is already a Friend or in Blocked list.`;
       }
     }
-    // If userId is not found in the friends array, return false
+
+    for (let i = 0; i < pending.length; i++) {
+      if (pending[i].receiver === id) {
+        return `${id} is already in pending list.`;
+      }
+    }
+
     return false;
   }
 
@@ -92,7 +96,6 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
         });
 
         const data = await response.json()
-        console.log(data)
         if(response.ok){
           if(!data.sent){
             setFriendRequestSent(null);
@@ -101,7 +104,11 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
           if(data.sent){
             setFriendRequestError(null);
             setFriendRequestSent(data.sent);
+            
+            userDispatch({type:'PENDING', payload:data.requestData})
+            dispatch({type:'UPDATE_USER', payload:{pending:data.requestData}})
           }
+
         }
         if(!response.ok){
           setFriendRequestError(data.error)
@@ -116,14 +123,14 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
 
     if(validateInput(username,userId)){
       let id = username+userId;
-      const friendExists = alreadyAFriendOrNot(id,friends, pending, blocked)
+      const friendExists = alreadyAFriendOrNot(id,friends,pending)
       if(user.user.uniqueUsername !== id){
         if(!friendExists){
           sendRequest(id)
         }
         else{
           setFriendRequestSent(null)
-          setFriendRequestError(`${id} is already a Friend.`)
+          setFriendRequestError(friendExists)
         }
       }
       else{
