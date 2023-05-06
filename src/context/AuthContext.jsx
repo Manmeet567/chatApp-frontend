@@ -13,10 +13,18 @@ export const authReducer = (state,action) => {
             return { user:null }
 
         case 'UPDATE_USER':
-            return { 
-                ...state,
-                user:action.payload 
-            }
+            const updatedUser = {
+                ...state.user,
+                user: {
+                ...state.user.user,
+                ...action.payload,
+                },
+            };
+            localStorage.setItem('user', JSON.stringify(updatedUser));
+            return {
+                user: updatedUser,
+            };
+            
 
         default:
             return state
