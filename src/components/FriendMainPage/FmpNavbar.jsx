@@ -19,7 +19,7 @@ function FmpNavbar({activeItem,setActiveItem}) {
             <li><FaUserFriends className="f-icon" /><span>Friends</span></li>
             <li onClick={() => handleNavClick('online')} className={activeItem==='online' ? 'active':''}>Online</li>
             <li onClick={() => handleNavClick('all')} className={activeItem==='all' ? 'active':''}>All</li>
-            <li onClick={() => handleNavClick('pending')} className={activeItem==='pending' ? 'active':''} style={{display:'flex', alignItems:'center'}}>Pending {pendingLength && <div style={{marginLeft:'6px', width:'18px',height:'18px',display:'flex',alignItems:'center', justifyContent:'center', fontSize:'12px',fontWeight:'550', borderRadius:'50%', backgroundColor:'#f23f42', color:'#fff'}}className='fmpo-plength'>{pendingLength > 9 ? '9+' : pendingLength}</div>}</li>
+            <li onClick={() => handleNavClick('pending')} className={activeItem==='pending' ? 'active':''} style={{display:'flex', alignItems:'center'}}>Pending{pendingLength!=0 && <div style={{marginLeft:'6px', width:'18px',height:'18px',display:'flex',alignItems:'center', justifyContent:'center', fontSize:'12px',fontWeight:'550', borderRadius:'50%', backgroundColor:'#f23f42', color:'#fff'}}className='fmpo-plength'>{pendingLength > 9 ? '9+' : pendingLength}</div>}</li>
             <li onClick={() => handleNavClick('blocked')} className={activeItem==='blocked' ? 'active':''}>Blocked</li>
             <li onClick={() => handleNavClick('addFriend')}><button>Add Friend</button></li>
         </ul>

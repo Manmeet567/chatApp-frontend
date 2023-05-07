@@ -10,7 +10,7 @@ import {BsChatSquareFill, BsThreeDotsVertical} from 'react-icons/bs';
 
 function FmpMainSectionComponent({activeNavItem, setActiveNavItem ,displayOption}) {
 
-    const {friends,pending,blocked} = useUserContext()
+    const {friends,pending:pendingArr,blocked} = useUserContext()
     const onlineUsers = friends !== null ? friends.filter(obj => obj.status !== "invisible") : [];
     const [titleText, setTitleText] = useState('All FRIENDS')
 
@@ -170,7 +170,7 @@ function FmpMainSectionComponent({activeNavItem, setActiveNavItem ,displayOption
 
 
 
-        {pending && activeNavItem === 'pending' && <div className="fms-all" style={activeNavItem === 'pending' ? displayOption[2] : displayOption[0]}>
+        {pendingArr && activeNavItem === 'pending' && <div className="fms-all" style={activeNavItem === 'pending' ? displayOption[2] : displayOption[0]}>
 
           <div className="fms-search-bar" style={activeNavItem === 'pending' ? displayOption[1] : displayOption[0]}>
             <input type="text" placeholder="Search" autoFocus/>
@@ -178,18 +178,18 @@ function FmpMainSectionComponent({activeNavItem, setActiveNavItem ,displayOption
           </div>
 
           <div className="fms-all-friend-text">
-              <p>{titleText} - {pending.length}</p>
+              <p>{titleText} - {pendingArr.length}</p>
           </div>
 
           <div className="fms-friend-list">
               <div className="fms-friend-info-main">
-                  {pending.length == 0 && <div className='fms-friend-info'><img src={PendingWumpus} alt=";" />
+                  {pendingArr.length == 0 && <div className='fms-friend-info'><img src={PendingWumpus} alt=";" />
                   <p style={{userSelect:'none',marginTop:'20px'}}>There are no pending friend requests. Here's Wumpus for now.</p>
                    
                   </div>}
 
-                  {pending.length!= 0 && <div className='friendsFound'>
-                        {pending.map((friend) => {
+                  {pendingArr.length!= 0 && <div className='friendsFound'>
+                        {pendingArr.map((friend) => {
                             return (
                             <div key={friend._id} className="ff-friend">
                                 <div className="fff-info">
@@ -198,7 +198,7 @@ function FmpMainSectionComponent({activeNavItem, setActiveNavItem ,displayOption
                                         <div className="fff-activestatus">
                                             <div className={`fffa-outer ${friend.status}`}><div className={`fffa-inner ${friend.status}`}></div></div>
                                         </div>
-
+                                    
                                     </div>
                                     <div className="fffi-name-status">
                                         <div className="fffins-name">
@@ -216,6 +216,11 @@ function FmpMainSectionComponent({activeNavItem, setActiveNavItem ,displayOption
                                                   : friend.customStatus
                                               }
                                             </p>
+                                            {/* {friend.pending.length > 0 && friend.pending.map((request) => {
+                                              return (
+                                                <p key={request._id}>{request.receiver}</p>
+                                              )
+                                            })}  */}
                                         </div>
                                     </div>
                                 </div>
