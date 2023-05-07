@@ -20,7 +20,7 @@ function ServerListSidebar() {
     <div className="serverList">
         <div className={`discord-icon ${activeItem === 'discord-icon' ? 'active' : ''}`} onClick={() => onServerClick('discord-icon')}>
 
-            {pendingLength && <div style={{margin:'0 10px', width:'26px',height:'26px',display:'flex',alignItems:'center', justifyContent:'center', fontSize:'12px',fontWeight:'550', borderRadius:'50%', backgroundColor:'#f23f42', color:'#fff', position:'fixed', zIndex:'1', border:'5px solid #1e1f22', transform:'translate(20px,18px)'}} >{pendingLength > 9 ? '9+' : pendingLength}</div>}
+            {pendingLength != 0 && <div style={{margin:'0 10px', width:'26px',height:'26px',display:'flex',alignItems:'center', justifyContent:'center', fontSize:'12px',fontWeight:'550', borderRadius:'50%', backgroundColor:'#f23f42', color:'#fff', position:'fixed', zIndex:'1', border:'5px solid #1e1f22', transform:'translate(20px,18px)'}} >{pendingLength > 9 ? '9+' : pendingLength}</div>}
 
             <div className={`${activeItem === 'discord-icon' ? 'serverBarHoverEffect active' : 'serverBarHoverEffect'}`}></div>
 
