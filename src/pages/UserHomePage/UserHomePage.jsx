@@ -21,58 +21,54 @@ function UserHomePage() {
     const {user} = useAuthContext()
     let friends = user.user.friends
     let blocked = user.user.blocked
-
     let pending = user.user.pending.map(obj => obj.user_id)
-    // useEffect(() => {
-    //   dispatch({type:'PENDING', payload:pending})
-    // }, [])
 
     useEffect(() => {
 
         const fetchData = async () => {
-    try {
-      const [friendsResponse, pendingResponse, blockedResponse] = await Promise.all([
-        fetch('http://localhost:4000/api/userProfile/friends', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'authorization': `Bearer ${user.token}`
-          },
-          body: JSON.stringify({ friends })
-        }),
-        fetch('http://localhost:4000/api/userProfile/pending', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'authorization': `Bearer ${user.token}`
-          },
-          body: JSON.stringify({ pending })
-        }),
-        fetch('http://localhost:4000/api/userProfile/blocked', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'authorization': `Bearer ${user.token}`
-          },
-          body: JSON.stringify({ blocked })
-        })
-      ])
+        try {
+          const [friendsResponse, pendingResponse, blockedResponse] = await Promise.all([
+            fetch('http://localhost:4000/api/userProfile/friends', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${user.token}`
+              },
+              body: JSON.stringify({ friends })
+            }),
+            fetch('http://localhost:4000/api/userProfile/pending', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${user.token}`
+              },
+              body: JSON.stringify({ pending })
+            }),
+            fetch('http://localhost:4000/api/userProfile/blocked', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${user.token}`
+              },
+              body: JSON.stringify({ blocked })
+            })
+          ])
 
-      const friendsData = await friendsResponse.json()
-      const pendingData = await pendingResponse.json()
-      const blockedData = await blockedResponse.json()
+        const friendsData = await friendsResponse.json()
+        const pendingData = await pendingResponse.json()
+        const blockedData = await blockedResponse.json()
 
-      if (friendsResponse.ok) {
-        dispatch({ type: 'FRIENDS', payload: friendsData })
-      }
+        if (friendsResponse.ok) {
+          dispatch({ type: 'FRIENDS', payload: friendsData })
+        }
 
-      if(pendingResponse.ok) {
-        dispatch({ type: 'PENDING', payload: pendingData })
-      }
+        if(pendingResponse.ok) {
+          dispatch({ type: 'PENDING', payload: pendingData })
+        }
 
-      if (blockedResponse.ok) {
-        dispatch({ type: 'BLOCKED', payload: blockedData })
-      }
+        if (blockedResponse.ok) {
+          dispatch({ type: 'BLOCKED', payload: blockedData })
+        }
     } catch (error) {
       console.error(error)
     }
