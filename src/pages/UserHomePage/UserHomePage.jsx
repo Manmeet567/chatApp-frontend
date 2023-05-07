@@ -22,16 +22,16 @@ function UserHomePage() {
     let friends = user.user.friends
     let blocked = user.user.blocked
 
-    let pending = user.user.pending
-    useEffect(() => {
-      dispatch({type:'PENDING', payload:pending})
-    }, [])
+    let pending = user.user.pending.map(obj => obj.user_id)
+    // useEffect(() => {
+    //   dispatch({type:'PENDING', payload:pending})
+    // }, [])
 
     useEffect(() => {
 
         const fetchData = async () => {
     try {
-      const [friendsResponse, blockedResponse] = await Promise.all([
+      const [friendsResponse, pendingResponse, blockedResponse] = await Promise.all([
         fetch('http://localhost:4000/api/userProfile/friends', {
           method: 'POST',
           headers: {
@@ -39,6 +39,14 @@ function UserHomePage() {
             'authorization': `Bearer ${user.token}`
           },
           body: JSON.stringify({ friends })
+        }),
+        fetch('http://localhost:4000/api/userProfile/pending', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'authorization': `Bearer ${user.token}`
+          },
+          body: JSON.stringify({ pending })
         }),
         fetch('http://localhost:4000/api/userProfile/blocked', {
           method: 'POST',
@@ -51,13 +59,16 @@ function UserHomePage() {
       ])
 
       const friendsData = await friendsResponse.json()
+      const pendingData = await pendingResponse.json()
       const blockedData = await blockedResponse.json()
 
       if (friendsResponse.ok) {
         dispatch({ type: 'FRIENDS', payload: friendsData })
       }
 
-      // dispatch({type:'PENDING', payload: pending})
+      if(pendingResponse.ok) {
+        dispatch({ type: 'PENDING', payload: pendingData })
+      }
 
       if (blockedResponse.ok) {
         dispatch({ type: 'BLOCKED', payload: blockedData })
