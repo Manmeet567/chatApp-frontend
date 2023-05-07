@@ -59,8 +59,10 @@ function FriendBar() {
   }
 
   // friend profile stuff
-  const {friends} = useUserContext();
+  const {friends, pending} = useUserContext();
   const [userSettings, setUserSettings] = useState(false)
+
+  const pendingLength = pending?.length
 
   return (
     <div className="friendsBar" style={{userSelect:'none'}}>
@@ -74,7 +76,7 @@ function FriendBar() {
             <Link to="/channels/@me">
               <button onClick={() => setActiveItem('friends')} className={`friends ${activeItem === 'friends' ? 'active' : ''}`}>
                 <FaUserFriends className='friendIcon'/>
-                <span>Friends</span>
+                <span style={{display:'flex', alignItems:'center', justifyContent:'space-between', width:'100%'}}>Friends {pendingLength && <div style={{margin:'0 10px', width:'16px',height:'16px',display:'flex',alignItems:'center', justifyContent:'center', fontSize:'12px',fontWeight:'550', borderRadius:'50%', backgroundColor:'#f23f42', color:'#fff'}}className='fmpo-plength'>{pendingLength > 9 ? '9+' : pendingLength}</div>}</span>
               </button>
             </Link>
 
