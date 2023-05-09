@@ -33,6 +33,12 @@ export const userReducer = (state,action) => {
                 ...state,
                 blocked:action.payload
             }
+
+        case 'NOTIFICATIONS':
+            return {
+                ...state,
+                notifications:action.payload
+            }
         
         default: return state;
     }
