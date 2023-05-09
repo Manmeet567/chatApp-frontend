@@ -40,6 +40,7 @@ export const userReducer = (state,action) => {
                 notifications:action.payload
             }
         
+            
         default: return state;
     }
 }
