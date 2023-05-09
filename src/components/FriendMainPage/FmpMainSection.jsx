@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './FmpMainSection.css'
 import WaitingWumpus from '../../assets/waitingForFriends.svg';
 import { useUserContext } from '../../hooks/useUserContext';
@@ -23,6 +23,7 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
   const [userId, setUserId] = useState('')
   const [friendRequestError, setFriendRequestError] = useState(null);
   const [friendRequestSent, setFriendRequestSent] = useState(null);
+  const [newFriend, setNewFriend] = useState(null)
 
   function validateInput(username, userId) {
   // check if username is empty
@@ -67,7 +68,7 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
 
   const alreadyAFriendOrNot = (id, friends,pending) => {
     for (let i = 0; i < friends.length; i++) {
-      if (friends[i].uniqueUsername === id) {
+      if (friends[i] === id) {
         return `${id} is already a Friend or in Blocked list.`;
       }
     }
@@ -80,6 +81,10 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
 
     return false;
   }
+
+  useEffect(() => {
+    userDispatch({type:'UPDATE_PENDING', payload:newFriend})
+  },[newFriend])
 
 
   function sendFriendRequest(username,userId) {
@@ -97,6 +102,7 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
 
         const data = await response.json()
         if(response.ok){
+          console.log(data)
           if(!data.sent){
             setFriendRequestSent(null);
             setFriendRequestError(data.message);
@@ -104,11 +110,9 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
           if(data.sent){
             setFriendRequestError(null);
             setFriendRequestSent(data.sent);
-            
-            userDispatch({type:'PENDING', payload:data.requestData})
             dispatch({type:'UPDATE_USER', payload:{pending:data.requestData}})
           }
-
+          setNewFriend(data.newFriend)
         }
         if(!response.ok){
           setFriendRequestError(data.error)
@@ -123,7 +127,7 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
 
     if(validateInput(username,userId)){
       let id = username+userId;
-      const friendExists = alreadyAFriendOrNot(id,friends,pending)
+      const friendExists = alreadyAFriendOrNot(id,user.user.friends,user.user.pending)
       if(user.user.uniqueUsername !== id){
         if(!friendExists){
           sendRequest(id)
@@ -139,7 +143,6 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
       }
     }
   }
-
 
   return (
     <section className="fms-main-section" style={{userSelect:'none'}}>
