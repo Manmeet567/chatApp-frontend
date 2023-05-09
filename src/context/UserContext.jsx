@@ -22,6 +22,12 @@ export const userReducer = (state,action) => {
                 pending:action.payload
             }
 
+        case 'UPDATE_PENDING':
+            return {
+                ...state,
+                pending: state.pending ? [...state.pending, action.payload] : [action.payload]
+            };
+        
         case 'BLOCKED':
             return {
                 ...state,
