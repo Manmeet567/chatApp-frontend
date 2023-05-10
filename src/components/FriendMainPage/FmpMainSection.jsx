@@ -111,8 +111,8 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
             setFriendRequestError(null);
             setFriendRequestSent(data.sent);
             dispatch({type:'UPDATE_USER', payload:{pending:data.requestData}})
+            setNewFriend(data.newFriend)
           }
-          setNewFriend(data.newFriend)
         }
         if(!response.ok){
           setFriendRequestError(data.error)
