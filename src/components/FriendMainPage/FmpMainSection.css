@@ -210,9 +210,7 @@
     transform: translate(17px, 18px) rotate(45deg);
     background-color: #1e1f22;
 }
-.fffii-icon{
-    transition: .2s linear;
-}
+
 .fffii-icon:hover .fffiii-text{
     display: block;
 }
