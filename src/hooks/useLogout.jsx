@@ -17,6 +17,7 @@ export const useLogout = () => {
         userDispatch({type:'FRIENDS', payload:null})
         userDispatch({type:'PENDING', payload:null})
         userDispatch({type:'BLOCKED', payload:null})
+        userDispatch({type:'NOTIFICATIONS', payload:null})
     }
 
     return {logout}
