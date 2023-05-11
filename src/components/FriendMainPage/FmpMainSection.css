@@ -202,9 +202,26 @@
     transform: translate(23px, 18px) rotate(45deg);
     background-color: #1e1f22;
 }
-
+.fffiii-text.pending::before {
+    content: '';
+    position: fixed;
+    height: 8px;
+    width: 8px;
+    transform: translate(17px, 18px) rotate(45deg);
+    background-color: #1e1f22;
+}
+.fffii-icon{
+    transition: .2s linear;
+}
 .fffii-icon:hover .fffiii-text{
     display: block;
+}
+
+.fffii-icon.pending-accept:hover .pa-accept{
+    color: #32ae5f;
+}
+.fffii-icon.pending-reject:hover .pa-reject {
+    color: #ef3f42;
 }
 
 .fffiii-more{
@@ -225,6 +242,14 @@
         width: 8px;
         transform: translate(11px, 18px) rotate(45deg);
         background-color: #1e1f22;
+}
+.fffiii-more.pending::before {
+    content: '';
+    position: fixed;
+    height: 8px;
+    width: 8px;
+    transform: translate(16px, 18px) rotate(45deg);
+    background-color: #1e1f22;
 }
 .fffii-icon:hover .fffiii-more{
     display: block;
