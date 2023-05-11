@@ -63,7 +63,15 @@ function UserHomePage() {
         }
 
         if(pendingResponse.ok) {
-          dispatch({ type: 'PENDING', payload: pendingData })
+          const modifiedPendingData = pendingData.map(user => {
+            const modifiedPendingRequests = user.pending.filter(request => request.user_id !== user._id).map(request => request.receiver);
+            const realPendingData = modifiedPendingRequests[0];
+              return {
+                ...user,
+                pendingRequest: realPendingData
+              }
+            });
+          dispatch({ type: 'PENDING', payload: modifiedPendingData })
         }
 
         if (blockedResponse.ok) {
