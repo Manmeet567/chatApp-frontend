@@ -63,7 +63,7 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
   return true;
 }
 
-  const {friends,pending, dispatch:userDispatch} = useUserContext()
+  const {dispatch:userDispatch} = useUserContext()
   const {user, dispatch} = useAuthContext()
 
   const alreadyAFriendOrNot = (id, friends,pending) => {
@@ -111,7 +111,11 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
             setFriendRequestError(null);
             setFriendRequestSent(data.sent);
             dispatch({type:'UPDATE_USER', payload:{pending:data.requestData}})
-            setNewFriend(data.newFriend)
+            const newData = {
+              ...data.newFriend,
+              pendingRequest:id
+            }
+            setNewFriend(newData)
           }
         }
         if(!response.ok){
