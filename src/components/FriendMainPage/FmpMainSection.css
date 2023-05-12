@@ -211,11 +211,14 @@
     background-color: #1e1f22;
 }
 
+.fffii-icon.pending-accept,.fffii-icon.pending-reject{
+    width: 38px;
+    height: 38px;
+    padding: 0;
+}
+
 .fffii-icon:hover .fffiii-text{
     display: block;
-}
-.fffii-icon.pending-reject{
-    padding: 10px;
 }
 
 .fffii-icon.pending-accept:hover .pa-accept{
