@@ -211,7 +211,7 @@ function FmpMainSectionComponent({activeNavItem, setActiveNavItem ,displayOption
                                         </div>
                                         <div className="fffins-status">
                                             <p style={{fontSize:'10px', marginTop:'2px'}}>
-                                              {friend.pendingRequest !== friend.uniqueUsername ? 'Incoming Friend Request' : 'Outgoing Friend Request'}
+                                              <b>{friend.pendingRequest !== friend.uniqueUsername ? 'Incoming Friend Request' : 'Outgoing Friend Request'}</b>
                                             </p>
                                         </div>
                                     </div>
