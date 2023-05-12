@@ -4,8 +4,8 @@ import BlockedWumpus from '../../assets/blockedWumpus.svg'
 import FriendlyWumpus from '../../assets/friendWumpus.svg'
 import { useUserContext } from '../../hooks/useUserContext';
 import {GoSearch} from 'react-icons/go'
-import {FiCheck} from 'react-icons/fi'
-import {RxCross1} from 'react-icons/rx'
+import {HiCheck} from 'react-icons/hi'
+import {CgClose} from 'react-icons/cg'
 import { useState,useEffect } from 'react';
 import './FmpMainSection.css'
 import {BsChatSquareFill, BsThreeDotsVertical} from 'react-icons/bs';
@@ -219,11 +219,11 @@ function FmpMainSectionComponent({activeNavItem, setActiveNavItem ,displayOption
 
                                 {friend.pendingRequest !== friend.uniqueUsername && <div className="fff-icons">
                                         <div className="fffii-icon pending-accept">
-                                          <FiCheck className='pa-accept' style={{marginTop:'2px'}}/>
+                                          <HiCheck className='pa-accept' style={{fontSize:'22px'}}/>
                                           <div className="fffiii-text pending">Accept</div>
                                         </div>
                                         <div className="fffii-icon pending-reject">
-                                          <RxCross1 className='pa-reject' style={{marginLeft:'0.5px', padding:'0px'}}/>
+                                          <CgClose className='pa-reject' style={{fontSize:'22px'}}/>
                                           <div className="fffiii-more pending">Ignore</div>
                                         </div>
                                 </div>}
