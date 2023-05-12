@@ -197,9 +197,12 @@ function FmpMainSectionComponent({activeNavItem, setActiveNavItem ,displayOption
                                 <div className="fff-info">
                                     <div className="fffi-pic">
                                         {friend.avatar === null ? <img src="https://www.svgviewer.dev/static-svgs/34446/discord-v2.svg" alt=":)" /> : <img src={friend.avatar} alt=":)" />}
-                                        <div className="fff-activestatus">
+                                        {/* <div className="fff-activestatus">
                                             <div className={`fffa-outer ${friend.status}`}><div className={`fffa-inner ${friend.status}`}></div></div>
-                                        </div>
+                                        </div> */}
+                                        {friend.pendingRequest !== friend.uniqueUsername && <div className="fff-activestatus">
+                                            <div className={`fffa-outer ${friend.status}`}><div className={`fffa-inner ${friend.status}`}></div></div>
+                                        </div>}
                                     
                                     </div>
                                     <div className="fffi-name-status">
@@ -207,27 +210,14 @@ function FmpMainSectionComponent({activeNavItem, setActiveNavItem ,displayOption
                                             <h5 style={{color:'#ffffff', fontSize:'14px'}}>{friend.username}</h5><span className='fffinsn-span' style={{fontSize:'14px'}}>#{friend.uniqueNameCounter.toString().padStart(4,"0")}</span>
                                         </div>
                                         <div className="fffins-status">
-                                            <p style={{fontSize:'13px'}}>
-                                              {
-                                                friend.customStatus === null
-                                                  ? friend.status === "dnd"
-                                                    ? "Do not Disturb"
-                                                    : friend.status === "invisible"
-                                                      ? "Offline"
-                                                      : friend.status.charAt(0).toUpperCase() + friend.status.slice(1)
-                                                  : friend.customStatus
-                                              }
+                                            <p style={{fontSize:'10px', marginTop:'2px'}}>
+                                              {friend.pendingRequest !== friend.uniqueUsername ? 'Incoming Friend Request' : 'Outgoing Friend Request'}
                                             </p>
-                                            {/* {friend.pending.length > 0 && friend.pending.map((request) => {
-                                              return (
-                                                <p key={request._id}>{request.receiver}</p>
-                                              )
-                                            })}  */}
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="fff-icons">
+                                {friend.pendingRequest !== friend.uniqueUsername && <div className="fff-icons">
                                         <div className="fffii-icon pending-accept">
                                           <FiCheck className='pa-accept' style={{marginTop:'2px'}}/>
                                           <div className="fffiii-text pending">Accept</div>
@@ -236,7 +226,14 @@ function FmpMainSectionComponent({activeNavItem, setActiveNavItem ,displayOption
                                           <RxCross1 className='pa-reject' style={{marginLeft:'0.5px', padding:'0px'}}/>
                                           <div className="fffiii-more pending">Ignore</div>
                                         </div>
-                                </div>
+                                </div>}
+
+                                {friend.pendingRequest === friend.uniqueUsername && <div className="fff-icons">
+                                        <div className="fffii-icon pending-reject">
+                                          <RxCross1 className='pa-reject' style={{marginLeft:'0.5px', padding:'0px'}}/>
+                                          <div className="fffiii-more pending">Cancel</div>
+                                        </div>
+                                </div>}
                             </div>
                             )
                         })}
