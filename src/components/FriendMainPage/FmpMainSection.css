@@ -214,6 +214,9 @@
 .fffii-icon:hover .fffiii-text{
     display: block;
 }
+.fffii-icon.pending-reject{
+    padding: 10px;
+}
 
 .fffii-icon.pending-accept:hover .pa-accept{
     color: #32ae5f;
