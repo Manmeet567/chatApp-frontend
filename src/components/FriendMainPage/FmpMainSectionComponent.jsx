@@ -230,7 +230,7 @@ function FmpMainSectionComponent({activeNavItem, setActiveNavItem ,displayOption
 
                                 {friend.pendingRequest === friend.uniqueUsername && <div className="fff-icons">
                                         <div className="fffii-icon pending-reject">
-                                          <RxCross1 className='pa-reject' style={{marginLeft:'0.5px', padding:'0px'}}/>
+                                          <CgClose className='pa-reject' style={{fontSize:'22px'}}/>
                                           <div className="fffiii-more pending">Cancel</div>
                                         </div>
                                 </div>}
