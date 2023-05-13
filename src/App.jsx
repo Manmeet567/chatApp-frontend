@@ -18,7 +18,7 @@ function App() {
 
   useEffect(() => {
     socket?.on('hello', message => {
-    console.log('Socket connected:', socket.connected);
+    console.log('Socket connected:', socket.id);
     console.log(message)
   })
   },[socket])
