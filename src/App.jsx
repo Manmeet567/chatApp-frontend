@@ -11,17 +11,22 @@ function App() {
   const {user} = useAuthContext()
   
   const [socket, setSocket] = useState(null)
-  
+ 
   useEffect(() => {
-    setSocket(io('ws://localhost:8900'))
-  }, [])
+  setSocket(io('ws://localhost:8900'));
+}, []);
 
-  useEffect(() => {
-    socket?.on('hello', message => {
-    console.log('Socket connected:', socket.id);
-    console.log(message)
-  })
-  },[socket])
+useEffect(() => {
+  if (socket) {
+    socket.on('connect', () => {
+      console.log('Connected to server:', socket.id);
+    });
+
+    socket.on('disconnect', () => {
+      console.log('Disconnected from server');
+    });
+  }
+}, [socket]);
 
   return (
       <BrowserRouter>
