@@ -13,14 +13,17 @@ function App() {
   const [socket, setSocket] = useState(null)
  
   useEffect(() => {
-  setSocket(io('ws://localhost:8900'));
-}, []);
+    setSocket(io('ws://localhost:8900'));
+  }, []);
 
 useEffect(() => {
-  if (socket) {
+  if (socket && user) {
     socket.on('connect', () => {
       console.log('Connected to server:', socket.id);
+      console.log(`${user.user.username} connected`)
+
     });
+    
 
     socket.on('disconnect', () => {
       console.log('Disconnected from server');
