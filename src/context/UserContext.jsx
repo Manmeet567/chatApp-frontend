@@ -40,6 +40,13 @@ export const userReducer = (state,action) => {
                 notifications:action.payload
             }
         
+        case 'SET_SOCKET':
+            return {
+                ...state,
+                socketId:action.payload
+            }
+            
+        
             
         default: return state;
     }
