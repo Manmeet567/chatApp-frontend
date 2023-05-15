@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { useLogout } from '../../hooks/useLogout'
+import React, { useEffect } from 'react'
 import ServerListSidebar from '../../components/ServerListSidebar/ServerListSidebar'
 import './UserHomePage.css'
 import FriendBar from '../../components/FriendsDmAndUserInfoBar/FriendBar'
@@ -11,14 +10,12 @@ import { useUserContext } from '../../hooks/useUserContext'
 
 function UserHomePage() {
 
-    const {dispatch} = useUserContext()
-    const {logout} = useLogout()
-
-    const handleLogout = () => {
-        logout()
-    }
+    const {socketId,dispatch} = useUserContext()
 
     const {user} = useAuthContext()
+    
+    useEffect(() => {console.log('SocketId from UserHomePage : ',socketId)}, [socketId]);
+
     let friends = user.user.friends
     let blocked = user.user.blocked
     let pending = user.user.pending.map(obj => obj.user_id)
