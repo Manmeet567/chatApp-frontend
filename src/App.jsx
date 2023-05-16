@@ -47,12 +47,7 @@ useEffect(() => {
       console.log(`${user.user.username} connected`)
       userDispatch({type:'SET_SOCKET', payload:socket.id});
       
-    sendRequest(socket.id)
-    });
-
-    socket.on('disconnect', () => {
-      console.log('Disconnected from server');
-      sendRequest(null)
+      sendRequest(socket.id)
     });
   }
 }, [socket]);
