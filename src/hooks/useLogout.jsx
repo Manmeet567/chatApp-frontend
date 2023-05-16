@@ -18,6 +18,7 @@ export const useLogout = () => {
         userDispatch({type:'PENDING', payload:null})
         userDispatch({type:'BLOCKED', payload:null})
         userDispatch({type:'NOTIFICATIONS', payload:null})
+        userDispatch({type:'SET_SOCKET', payload:null})
     }
 
     return {logout}
