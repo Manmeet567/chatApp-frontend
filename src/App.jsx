@@ -4,7 +4,7 @@ import { useAuthContext } from './hooks/useAuthContext'
 import './App.css'
 import Settings from './pages/Settings/Settings'
 import { useState, useEffect } from 'react'
-import {io} from 'socket.io-client'
+import {socket as mainSocket} from '../socket/socket'
 import { useUserContext } from './hooks/useUserContext'
 
 function App() {
@@ -37,7 +37,7 @@ function App() {
     };
  
   useEffect(() => {
-    setSocket(io('ws://localhost:8900'));
+    setSocket(mainSocket);
   }, []);
 
 useEffect(() => {
