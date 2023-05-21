@@ -3,54 +3,10 @@ import { Home,Login,Signup,UserHomePage } from './pages'
 import { useAuthContext } from './hooks/useAuthContext'
 import './App.css'
 import Settings from './pages/Settings/Settings'
-import { useState, useEffect } from 'react'
-import {socket as mainSocket} from '../socket/socket'
-import { useUserContext } from './hooks/useUserContext'
 
 function App() {
 
   const {user} = useAuthContext()
-
-  const {dispatch:userDispatch} = useUserContext()
-
-  const [socket, setSocket] = useState(null)
-
-  const sendRequest = async (socketId) => {
-      try {
-        const response = await fetch('http://localhost:4000/api/webSocket/newConnection', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json', 
-            'authorization': `Bearer ${user.token}`
-          },
-          body: JSON.stringify({ socketId }),
-        });
-
-        if (response.ok) {
-          console.log('Socket ID stored successfully');
-        } else {
-          console.log('Failed to send Socket ID');
-        }
-      } catch (error) {
-        console.log('Error sending Socket ID:', error);
-      }
-    };
- 
-  useEffect(() => {
-    setSocket(mainSocket);
-  }, []);
-
-useEffect(() => {
-  if (socket && user) {
-    socket.on('connect', () => {
-      console.log('Connected to web socket:', socket.id);
-      console.log(`${user.user.username} connected`)
-      userDispatch({type:'SET_SOCKET', payload:socket.id});
-      
-      sendRequest(socket.id)
-    });
-  }
-}, [socket]);
 
   return (
       <BrowserRouter>
