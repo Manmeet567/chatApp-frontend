@@ -1,20 +1,19 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ServerListSidebar from '../../components/ServerListSidebar/ServerListSidebar'
 import './UserHomePage.css'
 import FriendBar from '../../components/FriendsDmAndUserInfoBar/FriendBar'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import FriendMainPage from '../../components/FriendMainPage/FriendMainPage'
 import { useUserContext } from '../../hooks/useUserContext'
+import {socket as mainSocket} from '../../../socket/socket'
 
 
 
 function UserHomePage() {
 
-    const {socketId,dispatch} = useUserContext()
+    const {dispatch} = useUserContext()
 
     const {user} = useAuthContext()
-    
-    useEffect(() => {console.log('SocketId from UserHomePage : ',socketId)}, [socketId]);
 
     let friends = user.user.friends
     let blocked = user.user.blocked
@@ -84,6 +83,53 @@ function UserHomePage() {
   }
 
 }, [])
+
+
+  // connecting socket
+
+
+  const [socket, setSocket] = useState(null)
+
+  const sendRequest = async (socketId) => {
+      try {
+        const response = await fetch('http://localhost:4000/api/webSocket/newConnection', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json', 
+            'authorization': `Bearer ${user.token}`
+          },
+          body: JSON.stringify({ socketId }),
+        });
+
+        if (response.ok) {
+          console.log('Socket ID stored successfully');
+        } else {
+          console.log('Failed to send Socket ID');
+        }
+      } catch (error) {
+        console.log('Error sending Socket ID:', error);
+      }
+    };
+ 
+  useEffect(() => {
+    setSocket(mainSocket);
+  }, []);
+
+useEffect(() => {
+  if (socket && user) {
+    socket.on('connect', () => {
+      console.log('Connected to web socket:', socket.id);
+      console.log(`${user.user.username} connected`)
+      dispatch({type:'SET_SOCKET', payload:socket.id});
+      
+      sendRequest(socket.id)
+    });
+  }
+
+  socket?.on('disconnect', () => {
+    console.log('a user disconnected')
+  })
+}, [socket]);
   
 
 
