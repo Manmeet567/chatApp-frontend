@@ -11,7 +11,11 @@ import {socket as mainSocket} from '../../../socket/socket'
 
 function UserHomePage() {
 
-    const {dispatch} = useUserContext()
+    const {notifications,dispatch} = useUserContext()
+
+    useEffect(() => {
+      console.log(notifications)
+    }, [notifications])
 
     const {user} = useAuthContext()
 
@@ -80,6 +84,7 @@ function UserHomePage() {
 
   if (user) {
     fetchData()
+    dispatch({type:'NOTIFICATIONS', payload:user.user.notifications})
   }
 
 }, [])
@@ -89,27 +94,28 @@ function UserHomePage() {
 
 
   const [socket, setSocket] = useState(null)
-
   const sendRequest = async (socketId) => {
-      try {
-        const response = await fetch('http://localhost:4000/api/webSocket/newConnection', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json', 
-            'authorization': `Bearer ${user.token}`
-          },
-          body: JSON.stringify({ socketId }),
-        });
+    try {
 
-        if (response.ok) {
-          console.log('Socket ID stored successfully');
-        } else {
-          console.log('Failed to send Socket ID');
-        }
-      } catch (error) {
-        console.log('Error sending Socket ID:', error);
+      const response = await fetch('http://localhost:4000/api/webSocket/newConnection', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${user.token}`
+        },
+        body: JSON.stringify({ socketId }),
+      });
+
+      if (response.ok) {
+        console.log('Socket ID stored successfully');
+      } else {
+        console.log('Failed to send Socket ID');
       }
-    };
+    } catch (error) {
+      console.log('Error sending Socket ID:', error);
+    }
+  };
+
  
   useEffect(() => {
     setSocket(mainSocket);
@@ -125,7 +131,7 @@ useEffect(() => {
       sendRequest(socket.id)
     });
   }
-
+  
   socket?.on('disconnect', () => {
     console.log('a user disconnected')
   })
