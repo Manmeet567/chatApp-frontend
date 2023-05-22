@@ -115,7 +115,7 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
               ...data.newFriend,
               pendingRequest:id
             }
-            userDispatch({type:'NOTIFICATIONS', payload:data.notifications})
+            userDispatch({type:'NOTIFICATIONS', payload:data.notifications}) // not needed
             setNewFriend(newData)
           }
         }
