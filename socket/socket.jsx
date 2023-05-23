@@ -1,13 +1,26 @@
 import io from 'socket.io-client';
 
-const data = JSON.parse(localStorage.getItem('user'));
-const token = data.token;
+let socket = null;
 
-const socket = io('ws://localhost:8900',{
-    auth:{
-        token:token
-    }
-});
+const initializeSocket = () => {
+  const userData = localStorage.getItem('user');
+  if (userData) {
+    const data = JSON.parse(userData);
+    const token = data.token;
+
+    socket = io('ws://localhost:8900', {
+      auth: {
+        token: token
+      }
+    });
 
 
-export {socket};
+    console.log('Socket initialized');
+
+  } else {
+    console.log('User not logged in. Socket not initialized');
+  }
+};
+
+export { socket, initializeSocket };
+
