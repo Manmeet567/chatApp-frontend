@@ -5,7 +5,7 @@ import FriendBar from '../../components/FriendsDmAndUserInfoBar/FriendBar'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import FriendMainPage from '../../components/FriendMainPage/FriendMainPage'
 import { useUserContext } from '../../hooks/useUserContext'
-import {socket as mainSocket} from '../../../socket/socket'
+import {initializeSocket ,socket as mainSocket} from '../../../socket/socket'
 
 
 
@@ -81,6 +81,7 @@ function UserHomePage() {
   if (user) {
     fetchData()
     dispatch({type:'NOTIFICATIONS', payload:user.user.notifications})
+    initializeSocket()
   }
 
 }, [])
