@@ -11,11 +11,7 @@ import {socket as mainSocket} from '../../../socket/socket'
 
 function UserHomePage() {
 
-    const {notifications,dispatch} = useUserContext()
-
-    useEffect(() => {
-      console.log(notifications)
-    }, [notifications])
+    const {dispatch} = useUserContext()
 
     const {user} = useAuthContext()
 
