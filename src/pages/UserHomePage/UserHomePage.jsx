@@ -8,10 +8,10 @@ import { useUserContext } from '../../hooks/useUserContext'
 import {initializeSocket ,socket as mainSocket} from '../../../socket/socket'
 
 
-
 function UserHomePage() {
 
-    const {dispatch} = useUserContext()
+    const {notifications,dispatch} = useUserContext()
+    useEffect(()=>{console.log(notifications)},[notifications])
 
     const {user} = useAuthContext()
 
@@ -131,6 +131,7 @@ useEffect(() => {
   
   socket?.on('disconnect', () => {
     console.log('a user disconnected')
+    dispatch({type:'NOTIFICATIONS', payload:null})
   })
 }, [socket]);
   
@@ -141,7 +142,6 @@ useEffect(() => {
             <ServerListSidebar />
             <FriendBar />
             {/* <button onClick={handleLogout}>Logout</button> */}
-  
 
             <FriendMainPage />
 
