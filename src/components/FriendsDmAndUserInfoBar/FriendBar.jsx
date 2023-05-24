@@ -59,10 +59,10 @@ function FriendBar() {
   }
 
   // friend profile stuff
-  const {friends, pending} = useUserContext();
+  const {friends, notifications} = useUserContext();
   const [userSettings, setUserSettings] = useState(false)
 
-  const pendingLength = pending?.length
+  const pendingLength = notifications?.pendingRequests;
 
   return (
     <div className="friendsBar" style={{userSelect:'none'}}>
