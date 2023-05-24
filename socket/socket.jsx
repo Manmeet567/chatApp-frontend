@@ -8,7 +8,7 @@ const initializeSocket = () => {
     const data = JSON.parse(userData);
     const token = data.token;
 
-    socket = io('ws://localhost:8900', {
+    socket = io('ws://localhost:4000', {
       auth: {
         token: token
       }
