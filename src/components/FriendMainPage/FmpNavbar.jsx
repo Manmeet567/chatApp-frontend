@@ -10,8 +10,8 @@ function FmpNavbar({activeItem,setActiveItem}) {
     setActiveItem(str)
   }
 
-  const {pending} = useUserContext();
-  const pendingLength = pending?.length
+  const {notifications} = useUserContext();
+  const pendingLength = notifications?.pendingRequests;
 
   return (
     <div className="fmp-navbar" style={{userSelect:'none'}}>
