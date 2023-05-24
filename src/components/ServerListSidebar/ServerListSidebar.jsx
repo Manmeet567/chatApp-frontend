@@ -8,8 +8,8 @@ import ServerIcon from '../ServerIcon/ServerIcon'
 
 function ServerListSidebar() {
 
-    const {pending} = useUserContext();
-    const pendingLength = pending?.length;
+    const {notifications} = useUserContext();
+    const pendingLength = notifications?.pendingRequests;
     const [activeItem,setActiveItem] = useState('discord-icon')
 
     function onServerClick(item) {
