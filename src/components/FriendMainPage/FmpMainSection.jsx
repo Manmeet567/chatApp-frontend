@@ -87,7 +87,6 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
     userDispatch({type:'UPDATE_PENDING', payload:newFriend})
   },[newFriend])
 
-
   function sendFriendRequest(username,userId) {
 
     const sendRequest = async (id) => {
