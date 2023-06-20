@@ -4,7 +4,7 @@ import WaitingWumpus from '../../assets/waitingForFriends.svg';
 import { useUserContext } from '../../hooks/useUserContext';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import FmpMainSectionComponent from './FmpMainSectionComponent';
-import IncomingFriendRequest from '../../../socket/IncomingFriendRequest';
+import { socket } from '../../../socket/socket';
 
 function FmpMainSection({activeNavItem, setActiveNavItem}) {
 
@@ -117,6 +117,9 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
               pendingRequest:id
             }
             setNewFriend(newData)
+
+            
+            socket?.emit('friendRequestNotification', {sender: user.user, receiver: data.newFriend})
           }
         }
         if(!response.ok){
@@ -151,7 +154,6 @@ function FmpMainSection({activeNavItem, setActiveNavItem}) {
 
   return (
     <section className="fms-main-section" style={{userSelect:'none'}}>
-      <IncomingFriendRequest />
 
         <FmpMainSectionComponent activeNavItem={activeNavItem} setActiveNavItem={setActiveNavItem} displayOption ={displayOption}/>
         
