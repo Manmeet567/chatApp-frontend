@@ -10,10 +10,10 @@ import {initializeSocket ,socket as mainSocket} from '../../../socket/socket'
 
 function UserHomePage() {
 
-    const {notifications,dispatch} = useUserContext()
+    const {notifications,dispatch:userDispatch} = useUserContext()
     useEffect(()=>{console.log(notifications)},[notifications])
 
-    const {user} = useAuthContext()
+    const {user,dispatch} = useAuthContext()
 
     let friends = user.user.friends
     let blocked = user.user.blocked
@@ -55,7 +55,7 @@ function UserHomePage() {
         const blockedData = await blockedResponse.json()
 
         if (friendsResponse.ok) {
-          dispatch({ type: 'FRIENDS', payload: friendsData })
+          userDispatch({ type: 'FRIENDS', payload: friendsData })
         }
 
         if(pendingResponse.ok) {
@@ -67,11 +67,11 @@ function UserHomePage() {
                 pendingRequest: realPendingData
               }
             });
-          dispatch({ type: 'PENDING', payload: modifiedPendingData })
+          userDispatch({ type: 'PENDING', payload: modifiedPendingData })
         }
 
         if (blockedResponse.ok) {
-          dispatch({ type: 'BLOCKED', payload: blockedData })
+          userDispatch({ type: 'BLOCKED', payload: blockedData })
         }
     } catch (error) {
       console.error(error)
@@ -80,7 +80,7 @@ function UserHomePage() {
 
   if (user) {
     fetchData()
-    dispatch({type:'NOTIFICATIONS', payload:user.user.notifications})
+    userDispatch({type:'NOTIFICATIONS', payload:user.user.notifications})
     initializeSocket()
   }
 
@@ -123,15 +123,22 @@ useEffect(() => {
     socket.on('connect', () => {
       console.log('Connected to web socket:', socket.id);
       console.log(`${user.user.username} connected`)
-      dispatch({type:'SET_SOCKET', payload:socket.id});
+      userDispatch({type:'SET_SOCKET', payload:socket.id});
       
       sendRequest(socket.id)
+      
+       socket?.once('newFriendRequest', (data) => {
+        userDispatch({type:'NOTIFICATIONS', payload:data.receiver.notifications})
+        userDispatch({type:'UPDATE_PENDING', payload:data.sender})
+        dispatch({type:'UPDATE_USER', payload:{pending:data.receiver.pending, notifications:data.receiver.notifications}})
+      });
+
     });
   }
   
   socket?.on('disconnect', () => {
     console.log('a user disconnected')
-    dispatch({type:'NOTIFICATIONS', payload:null})
+    userDispatch({type:'NOTIFICATIONS', payload:null})
   })
 }, [socket]);
   
